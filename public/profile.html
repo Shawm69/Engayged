@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engayged ($GAY) Player Profile</title>
+    <link rel="stylesheet" href="profile.css">
+    <link rel="stylesheet" href="navbar.css"> <!-- Link the new navbar CSS - Updated: 2025-05-28 -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="footer.css"> <!-- Link to the footer stylesheet -->
+</head>
+<body class="has-navbar"> <!-- Add class to body for pages with navbar -->
+    <div id="navbar-placeholder"></div> <!-- Placeholder for the navbar -->
+    <div class="container">
+        <header class="profile-header">
+            <h1>Player Profile Dashboard</h1>
+            <div class="golden-engaygement-status">
+                <span>Golden Engaygement Status:</span>
+                <span class="status-active">ACTIVE THIS EPOCH ✨</span>
+            </div>
+        </header>
+
+        <section class="account-info-section">
+            <h2>Account Information</h2>
+            <div class="account-info-content">
+                <div class="profile-main-info">
+                    <div class="avatar-frame">
+                        <img src="public/assets/snoop.png" alt="Profile Picture" class="profile-pic">
+                    </div>
+                    <div class="user-details">
+                        <h3 class="user-name">Engayged Gamer</h3>
+                        <div class="profile-buttons">
+                            <button class="action-btn edit-profile-btn">Edit Profile</button>
+                            <button class="action-btn leaderboard-btn">Leaderboard</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="account-stats">
+                    <p class="subdued-text"><strong>Twitter Handle:</strong> <span class="handle-text">@EngaygedGAY</span></p>
+                    <p class="subdued-text"><strong>Wallet Address:</strong> <span class="wallet-text">0xGAYWalletAddress123...</span></p>
+                    <p><strong>Current Epoch Rank:</strong> #69 <span class="rank-badge current-epoch"></span></p>
+                    <p><strong>$GAY Rank (Account Rank):</strong> #420 <span class="rank-badge gay-rank"></span></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="lifetime-stats">
+            <h2>Lifetime Stats</h2>
+            <div class="stat-item">
+                <h3>Total Lifetime $GAY Earned:</h3>
+                <p class="gay-amount">69,420.69 $GAY</p>
+            </div>
+            <div class="badges">
+                <h3>Earned Badges:</h3>
+                <div class="badge-list">
+                    <img src="public/assets/HitmarkerFinal.png" alt="Badge: First Engaygement" title="First Engaygement">
+                    <img src="public/assets/CoolDoritos.png" alt="Badge: Meme Master" title="Meme Master">
+                    <img src="public/assets/illuminati.png" alt="Badge: Illuminati Member" title="Illuminati Member">
+                    <!-- Add more badge images as needed -->
+                </div>
+            </div>
+        </section>
+
+        <section class="current-epoch-breakdown">
+            <h2>Current Epoch Performance</h2>
+            <div class="epoch-summary">
+                <p><strong>Total Points Earned:</strong> 1,234,567</p>
+                <p><strong>Leaderboard Rank:</strong> #69</p>
+            </div>
+            <h3>Per-Tweet Breakdown:</h3>
+            <div class="tweet-list">
+                <div class="tweet-item">
+                    <p><strong>Tweet Type:</strong> Original Meme</p>
+                    <p><strong>Likes:</strong> 1,500</p>
+                    <p><strong>Retweets:</strong> 300</p>
+                    <p><strong>Views:</strong> 15,000</p>
+                    <p><strong>Points Earned:</strong> 50,000</p>
+                </div>
+                <div class="tweet-item">
+                    <p><strong>Tweet Type:</strong> Retweet with Quote</p>
+                    <p><strong>Likes:</strong> 800</p>
+                    <p><strong>Retweets:</strong> 150</p>
+                    <p><strong>Views:</strong> 8,000</p>
+                    <p><strong>Points Earned:</strong> 25,000</p>
+                </div>
+                <!-- Add more tweet items as needed -->
+            </div>
+        </section>
+
+        <section class="historical-performance">
+            <h2>Historical Epoch Performance</h2>
+            <div class="epoch-history-list">
+                <div class="epoch-history-item">
+                    <p><strong>Epoch #1:</strong></p>
+                    <p>Rank: #420</p>
+                    <p>Points: 500,000</p>
+                    <p>Claim Choice: Standard</p>
+                </div>
+                <div class="epoch-history-item">
+                    <p><strong>Epoch #2:</strong></p>
+                    <p>Rank: #77</p>
+                    <p>Points: 900,000</p>
+                    <p>Claim Choice: LP Lock</p>
+                </div>
+                <!-- Add more historical epoch items as needed -->
+            </div>
+        </section>
+
+        <section class="referral-section">
+            <h2 class="referral-zone-header">
+                Referral Zone
+                <div class="referral-tier-border">Referral Tier: <span class="tier-name">DIAMOND</span></div>
+            </h2>
+            <p><strong>Your Unique Invite Link:</strong> <a href="https://engayged.com/invite/ROO-GAY69" target="_blank">engayged.com/invite/ROO-GAY69</a></p>
+            <p><strong>Total Invites:</strong> 10</p>
+            <p><strong>Milestone Progress:</strong> 5/10 (Next bonus at 10 invites!)</p>
+            <p><strong>Bonus Points Earned through Referrals:</strong> 100,000</p>
+        </section>
+    </div>
+
+    <!-- Leaderboard Popup Modal -->
+    <div id="leaderboardModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Current Leaderboard</h2>
+            <div class="leaderboard-data">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Points</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboardTableBody">
+                        <!-- Leaderboard data will be inserted here by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Profile Popup Modal -->
+    <div id="editProfileModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button-edit">&times;</span>
+            <h2>Edit Profile</h2>
+            <div class="edit-profile-form">
+                <div class="form-group">
+                    <label for="nicknameInput">Nickname:</label>
+                    <input type="text" id="nicknameInput" class="text-input" placeholder="Enter new nickname">
+                </div>
+                <div class="form-group">
+                    <label for="profilePicInput">Profile Picture:</label>
+                    <input type="file" id="profilePicInput" accept="image/*" class="file-input">
+                    <img id="profilePicPreview" src="public/assets/snoop.png" alt="Profile Picture Preview" class="profile-pic-preview">
+                </div>
+                <button id="saveProfileChanges" class="save-button">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Ensure this script runs after the navbar is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const connectWalletBtnNavbar = document.getElementById('connectWalletBtnNavbar');
+            if (connectWalletBtnNavbar) {
+                const nickname = localStorage.getItem('userNickname');
+                if (nickname) {
+                    connectWalletBtnNavbar.textContent = nickname;
+                    connectWalletBtnNavbar.classList.add('wallet-connected');
+                }
+            }
+        });
+    </script>
+    <!-- Footer Start -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://twitter.com/engayged" target="_blank" rel="noopener noreferrer" class="footer-icon-link" aria-label="Twitter">TW</a>
+                <a href="https://telegram.org/engayged" target="_blank" rel="noopener noreferrer" class="footer-icon-link" aria-label="Telegram">TG</a>
+                <a href="https://discord.com/invite/engayged" target="_blank" rel="noopener noreferrer" class="footer-icon-link" aria-label="Discord">DS</a>
+                <a href="/docs" class="footer-icon-link" aria-label="Documentation">DOCS</a>
+                <a href="/gbribes" class="footer-icon-link" aria-label="GBribes">GB</a>
+            </div>
+            <div class="footer-info">
+                <p class="copyright">&copy; 2025 Engayged</p>
+                <p class="slogan">"Stay Engayged, Stay Dank."</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+</body>
+</html>

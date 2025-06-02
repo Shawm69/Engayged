@@ -1,0 +1,651 @@
+body {
+    font-family: 'Press Start 2P', cursive; /* A pixelated font for retro feel if available */
+    background-color: #1a0f3d; /* Dark purple/blue for vaporwave */
+    color: #00ffff; /* Neon cyan for text */
+    margin: 0;
+    padding: 0; /* Remove body padding, handled by container */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%; /* Ensure body takes full height */
+    min-height: 100vh; /* Ensure body takes at least full viewport height */
+    overflow-y: scroll; /* Enable vertical scrolling */
+    box-sizing: border-box;
+    background-image: url('public/assets/dankill.png'); /* Vaporwave background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Removed text-shadow to prevent conflict with navbar.css */
+}
+
+/* Removed redundant font import as it's already in navbar.css or main style.css */
+
+.container {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black container */
+    border: 3px solid #ff00ff; /* Neon pink border */
+    box-shadow: 0 0 20px #ff00ff, inset 0 0 10px #ff00ff; /* Outer and inner glow */
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 900px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    backdrop-filter: blur(5px); /* Slightly blurred background */
+    margin-top: 80px; /* Add top margin to prevent overlap with fixed navbar */
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px dashed #00ffff;
+    padding-bottom: 20px;
+}
+
+.profile-header h1 {
+    font-size: 2.5em;
+    color: #00ff00; /* Neon green for main titles */
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #ff00ff; /* Updated text-shadow */
+}
+
+.golden-engaygement-status {
+    background-color: #ff00ff; /* Neon pink background */
+    color: #000000; /* Black text */
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+    border: 2px solid #00ffff;
+    box-shadow: 0 0 15px #ff00ff;
+}
+
+.golden-engaygement-status .status-active {
+    color: #00ff00; /* Neon green highlight */
+    text-shadow: 1px 1px #000000;
+}
+
+.account-info-section {
+    background-color: rgba(0, 255, 255, 0.1); /* Semi-transparent cyan background for sections (original style) */
+    border: 1px solid #00ffff; /* Original border */
+    border-radius: 8px; /* Original border-radius */
+    padding: 20px; /* Original padding */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), inset 0 0 5px rgba(0, 255, 255, 0.3); /* Original box-shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* The .account-info-section::before and @keyframes glowing-border rules are removed as requested */
+
+section { /* General section styling for other sections */
+    background-color: rgba(0, 255, 255, 0.1); /* Semi-transparent cyan background for sections */
+    border: 1px solid #00ffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), inset 0 0 5px rgba(0, 255, 255, 0.3);
+}
+
+section h2 {
+    color: #00ff00; /* Neon green for section titles */
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    border-bottom: 1px dotted #ff00ff;
+    padding-bottom: 10px;
+    text-shadow: 0 0 8px #00ff00, 0 0 15px #ff00ff; /* Updated text-shadow */
+}
+
+.referral-zone-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    border-bottom: 1px dotted #ff00ff;
+    padding-bottom: 10px;
+}
+
+.referral-zone-header h2 {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+section p {
+    margin-bottom: 8px;
+    line-height: 1.6;
+}
+
+.account-info-content {
+    display: flex;
+    flex-direction: column; /* Stack content vertically in account info */
+    align-items: center; /* Center horizontally */
+    gap: 30px; /* Increased spacing between main info and stats */
+    width: 100%; /* Take full width within section */
+}
+
+.profile-main-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Spacing between avatar and user details */
+}
+
+.account-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Consistent spacing for stats */
+    text-align: left; /* Align stats to the left */
+    width: 100%;
+    max-width: 400px; /* Limit width for better readability */
+}
+
+.subdued-text {
+    font-size: 0.9em;
+    color: rgba(0, 255, 255, 0.7); /* Slightly subdued cyan */
+    text-shadow: none; /* No additional text shadow */
+}
+
+.handle-text, .wallet-text {
+    font-family: 'Press Start 2P', cursive;
+    color: #00ffff; /* Brighter cyan */
+    font-weight: bold;
+}
+
+.rank-badge {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.7em;
+    font-weight: bold;
+    margin-left: 5px;
+    vertical-align: middle;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+.current-epoch {
+    background-color: #00ff00; /* Neon green */
+    color: #1a0f3d;
+}
+
+.gay-rank {
+    background-color: #ff00ff; /* Neon pink */
+    color: #1a0f3d;
+}
+
+.avatar-frame {
+    width: 180px; /* Frame size */
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff00); /* Neon gradient for frame */
+    background-size: 200% 200%;
+    animation: avatar-glow-pulsate 4s infinite alternate, avatar-rotate 15s linear infinite;
+    padding: 5px; /* Padding for the inner glow */
+}
+
+.avatar-frame::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: inherit;
+    filter: blur(10px);
+    z-index: -1;
+}
+
+@keyframes avatar-glow-pulsate {
+    0% { background-position: 0% 50%; box-shadow: 0 0 20px #00ffff; }
+    50% { background-position: 100% 50%; box-shadow: 0 0 30px #ff00ff; }
+    100% { background-position: 0% 50%; box-shadow: 0 0 20px #00ff00; }
+}
+
+@keyframes avatar-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.profile-pic {
+    width: 160px; /* Inner image size */
+    height: 160px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1a0f3d; /* Dark background color for inner border */
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8); /* Inner shadow for depth */
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px; /* Spacing between name and buttons */
+}
+
+.user-name {
+    font-family: 'Permanent Marker', cursive; /* A cleaner retro font for name */
+    font-size: 3.5em; /* Much larger for hierarchy */
+    color: #00ff00; /* Neon green */
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ffff, 0 0 30px #ff00ff; /* Intense glow */
+    margin: 0; /* Remove default margin */
+    letter-spacing: 2px;
+}
+
+.profile-buttons {
+    display: flex;
+    gap: 20px; /* Space between buttons */
+}
+
+.action-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px; /* Rounded corners for buttons */
+    font-family: 'Press Start 2P', cursive;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: all 0.3s ease;
+    color: #1a0f3d; /* Dark text for contrast */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    /* Initial state for the pseudo-element background */
+    background: #00ffff; /* Fallback for no gradient */
+}
+
+.action-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit; /* Inherit the background from the parent for gradient */
+    z-index: -1;
+    transition: transform 0.4s ease-out;
+    transform: scaleX(0);
+    transform-origin: left;
+}
+
+.action-btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: right;
+}
+
+.action-btn:hover {
+    color: #ffffff; /* White text on hover */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.7); /* Subtle white glow */
+    transform: translateY(-2px);
+}
+
+.edit-profile-btn {
+    background: linear-gradient(45deg, #00ffff, #00ff00); /* Cyan to Green */
+}
+
+.edit-profile-btn:hover {
+    background: linear-gradient(45deg, #00ff00, #00ffff); /* Reverse gradient on hover */
+    box-shadow: 0 0 20px #00ff00;
+}
+
+.leaderboard-btn {
+    background: linear-gradient(45deg, #ff00ff, #ffaa00); /* Pink to Gold */
+}
+
+.leaderboard-btn:hover {
+    background: linear-gradient(45deg, #ffaa00, #ff00ff); /* Reverse gradient on hover */
+    box-shadow: 0 0 20px #ff00ff;
+}
+
+/* Modal (Leaderboard Popup) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    backdrop-filter: blur(8px); /* Frosted glass effect */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.9); /* Darker semi-transparent black */
+    border: 3px solid #00ffff; /* Neon cyan border */
+    box-shadow: 0 0 25px #00ffff, inset 0 0 10px #00ffff; /* Glowing effect */
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 700px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+    color: #00ffff; /* Neon cyan text */
+}
+
+.modal-content h2 {
+    color: #00ff00; /* Neon green for modal title */
+    font-size: 2em;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px #ff00ff;
+}
+
+.close-button {
+    color: #ff00ff; /* Neon pink for close button */
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #ffff00; /* Yellow on hover/focus */
+    text-decoration: none;
+    cursor: pointer;
+    text-shadow: 0 0 15px #ffff00;
+}
+
+.leaderboard-data table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.leaderboard-data th, .leaderboard-data td {
+    border: 1px solid #ff00ff; /* Neon pink borders for table */
+    padding: 10px;
+    color: #00ffff; /* Neon cyan text */
+    text-shadow: 1px 1px #1a0f3d;
+}
+
+.leaderboard-data th {
+    background-color: rgba(255, 0, 255, 0.2); /* Semi-transparent pink for header */
+    color: #00ff00; /* Neon green for header text */
+    text-shadow: 2px 2px #ff00ff;
+}
+
+.leaderboard-data tr:nth-child(even) {
+    background-color: rgba(0, 255, 255, 0.05); /* Lighter cyan for even rows */
+}
+
+.leaderboard-data tr:hover {
+    background-color: rgba(0, 255, 255, 0.2); /* Cyan highlight on hover */
+    box-shadow: inset 0 0 8px #00ffff;
+}
+
+/* Edit Profile Modal Specifics */
+.close-button-edit {
+    color: #ff00ff; /* Neon pink for close button */
+    font-size: 30px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.close-button-edit:hover,
+.close-button-edit:focus {
+    color: #ffff00; /* Yellow on hover/focus */
+    text-decoration: none;
+    cursor: pointer;
+    text-shadow: 0 0 15px #ffff00;
+}
+
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.edit-profile-form .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.edit-profile-form label {
+    color: #00ff00; /* Neon green for labels */
+    font-size: 1.1em;
+    text-shadow: 1px 1px #ff00ff;
+}
+
+.edit-profile-form .text-input,
+.edit-profile-form .file-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ff00ff; /* Neon pink border */
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #00ffff; /* Neon cyan text */
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9em;
+    box-shadow: inset 0 0 5px #ff00ff;
+}
+
+.edit-profile-form .text-input::placeholder {
+    color: rgba(0, 255, 255, 0.5); /* Lighter cyan placeholder */
+}
+
+.edit-profile-form .file-input {
+    cursor: pointer;
+}
+
+.edit-profile-form .profile-pic-preview {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #00ff00; /* Neon green border */
+    object-fit: cover;
+    margin-top: 10px;
+    align-self: center; /* Center the preview image */
+    box-shadow: 0 0 10px #00ff00, inset 0 0 5px #00ff00;
+}
+
+.edit-profile-form .save-button {
+    background-color: #00ff00; /* Neon green background */
+    color: #1a0f3d; /* Dark purple/blue text */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.7);
+    margin-top: 20px;
+}
+
+.edit-profile-form .save-button:hover {
+    background-color: #ffff00; /* Yellow on hover */
+    box-shadow: 0 0 20px #ffff00;
+}
+
+.referral-section .referral-tier-border {
+    border: 3px solid #ffaa00; /* Gold border for referral tier */
+    padding: 8px 15px; /* Adjust padding for better fit in header */
+    border-radius: 5px;
+    display: inline-block;
+    margin-top: 0; /* Remove top margin as it's part of a flex container */
+    font-weight: bold;
+    background-color: rgba(255, 170, 0, 0.1);
+    box-shadow: 0 0 10px #ffaa00;
+}
+
+.referral-section .tier-name {
+    color: #ffff00; /* Yellow for tier name */
+}
+
+.lifetime-stats .gay-amount {
+    font-size: 2em;
+    color: #ffaa00; /* Gold for $GAY amount */
+    font-weight: bold;
+    text-shadow: 2px 2px #ff00ff;
+    margin-top: 10px;
+}
+
+.badges {
+    margin-top: 20px;
+}
+
+.badge-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.badge-list img {
+    width: 60px;
+    height: 60px;
+    border: 2px solid #00ff00; /* Neon green border for badges */
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ff00, 0 0 5px inset #00ff00;
+    transition: transform 0.2s ease-in-out;
+}
+
+.badge-list img:hover {
+    transform: scale(1.1);
+}
+
+.epoch-summary {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px dotted #ff00ff;
+    border-radius: 5px;
+    background-color: rgba(255, 0, 255, 0.1);
+}
+
+.tweet-list, .epoch-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.tweet-item, .epoch-history-item {
+    background-color: rgba(0, 0, 0, 0.5); /* Darker semi-transparent for items */
+    border: 1px solid #00ffff;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 0 8px #00ffff;
+}
+
+.tweet-item p, .epoch-history-item p {
+    margin: 5px 0;
+}
+
+.tweet-item strong, .epoch-history-item strong {
+    color: #ffaa00; /* Gold for strong labels */
+}
+
+.referral-section a {
+    color: #00ff00; /* Neon green for links */
+    text-decoration: underline;
+    text-shadow: 1px 1px #ff00ff;
+}
+
+.referral-section a:hover {
+    color: #ffff00; /* Yellow on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .profile-header h1 {
+        font-size: 2em;
+    }
+
+    section h2 {
+        font-size: 1.5em;
+    }
+
+    .account-info-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .referral-zone-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .referral-zone-header h2 {
+        text-align: center;
+    }
+
+    .profile-main-info {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px; /* Adjust gap for smaller screens */
+    }
+
+    .user-details {
+        align-items: center;
+    }
+
+    .profile-pic {
+        width: 120px; /* Adjust PFP size for smaller screens */
+        height: 120px; /* Adjust PFP size for smaller screens */
+    }
+
+    .epoch-summary {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .badge-list img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+        gap: 15px;
+    }
+
+    .profile-header h1 {
+        font-size: 1.8em;
+    }
+
+    section h2 {
+        font-size: 1.3em;
+    }
+
+    .lifetime-stats .gay-amount {
+        font-size: 1.5em;
+    }
+
+    .badge-list {
+        justify-content: center;
+    }
+}
+.golden-user {
+    background-color: #FFD700; /* Gold background */
+    color: #333; /* Darker text for contrast */
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.7); /* Golden glow */
+}
+
+.golden-user td {
+    border-bottom: 1px solid rgba(255, 215, 0, 0.5); /* Lighter border for golden rows */
+}

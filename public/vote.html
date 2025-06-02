@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vote for the Mindshare Multiplier</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="vote.css">
+    <link rel="stylesheet" href="navbar.css"> <!-- Link the new navbar CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Permanent+Marker&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="footer.css"> <!-- Link to the footer stylesheet -->
+</head>
+<body class="has-navbar"> <!-- Add class to body for pages with navbar -->
+    <div id="navbar-placeholder"></div> <!-- Placeholder for the navbar -->
+    <div class="background-overlay"></div>
+    <div class="content">
+        <h1 class="main-header">
+            <span class="rainbow-text">Vote for the Mindshare Multiplier</span>
+        </h1>
+        <div class="vote-container">
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="vote">Vote</button>
+                <button class="tab-button" data-tab="lock">Stake</button>
+                <button class="tab-button" data-tab="bribes">Bribes</button>
+                <button class="tab-button" data-tab="rewards">Rewards</button>
+            </div>
+
+            <div id="vote-tab" class="tab-content active">
+                <section class="veGAY-balance-section">
+                    <h2>Your veGAY Balance</h2>
+                    <p><span id="veGAY-balance" class="veGAY-balance-value">0.00</span> veGAY</p>
+                    <p>Origin: <span id="veGAY-origin"></span></p>
+                    <p>Lock Duration: <span id="lock-duration"></span></p>
+                </section>
+
+                <section class="voting-panel">
+                    <h2>Allocate Your Votes</h2>
+                    <div class="tokens-list">
+                        <!-- Token voting items will be dynamically loaded here by JavaScript -->
+                        <div class="token-item">
+                            <div class="token-item-header">
+                                <div class="token-identity">
+                                    <img src="public/assets/dankill.png" alt="Token Logo" class="token-logo">
+                                    <span class="token-name">Token A</span>
+                                </div>
+                                <div class="token-bribe">
+                                    <span class="bribe-tag">Bribe: 100 GAY</span>
+                                </div>
+                            </div>
+                            <div class="token-multipliers">
+                                <div class="multiplier-block">
+                                    <span class="multiplier-label">Current Epoch</span>
+                                    <span class="current-multiplier-value">1.0x</span>
+                                </div>
+                                <div class="multiplier-block">
+                                    <span class="multiplier-label">Est. Next Epoch</span>
+                                    <span class="next-multiplier-value">1.2x</span>
+                                </div>
+                            </div>
+                            <div class="token-voting-controls">
+                                <input type="range" min="0" max="100" value="0" class="vote-slider" data-token="tokenA">
+                                <div class="vote-input-group">
+                                    <input type="number" min="0" max="100" value="0" class="vote-input" data-token="tokenA">
+                                    <span class="allocated-votes">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="token-item">
+                            <div class="token-item-header">
+                                <div class="token-identity">
+                                    <img src="public/assets/CoolDoritos.png" alt="Token Logo" class="token-logo">
+                                    <span class="token-name">Token B</span>
+                                </div>
+                                <div class="token-bribe">
+                                    <span class="bribe-tag">Bribe: 50 GAY</span>
+                                </div>
+                            </div>
+                            <div class="token-multipliers">
+                                <div class="multiplier-block">
+                                    <span class="multiplier-label">Current Epoch</span>
+                                    <span class="current-multiplier-value">1.5x</span>
+                                </div>
+                                <div class="multiplier-block">
+                                    <span class="multiplier-label">Est. Next Epoch</span>
+                                    <span class="next-multiplier-value">1.8x</span>
+                                </div>
+                            </div>
+                            <div class="token-voting-controls">
+                                <input type="range" min="0" max="100" value="0" class="vote-slider" data-token="tokenB">
+                                <div class="vote-input-group">
+                                    <input type="number" min="0" max="100" value="0" class="vote-input" data-token="tokenB">
+                                    <span class="allocated-votes">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" style="width: 0%;"></div>
+                    </div>
+                </section>
+
+                <section class="vote-countdown-section">
+                    <h2>Next Epoch Cutoff</h2>
+                    <p><span id="countdown">Calculating...</span></p>
+                </section>
+
+                <button id="submit-votes" class="cta-button" disabled>Submit Votes</button>
+            </div>
+
+            <div id="lock-tab" class="tab-content">
+                <section class="lock-section">
+                    <h2>Your Stake Positions</h2>
+                    <div id="current-locks">
+                        <!-- Staked GAY Lock Position -->
+                        <div class="lock-position-item">
+                            <p>Staked GAY: <span id="staked-gay-locked-amount">0.00 GAY</span></p>
+                            <button class="cta-button mini-button" data-lock-type="staked-gay">Manage</button>
+                        </div>
+                        <!-- LP Lock Position -->
+                        <div class="lock-position-item">
+                            <p>Staked LP: <span id="lp-locked-amount">0.00 LP</span></p>
+                            <button class="cta-button mini-button" data-lock-type="lp">Manage</button>
+                        </div>
+                        <p>No active stake positions currently. Use the "Manage" buttons to stake new positions.</p>
+                    </div>
+                    <div class="staking-stats-section">
+                        <h3>Your Staked Value</h3>
+                        <p class="staked-value-item">Staked $GAY: <span id="staked-gay-usd-value">425$</span></p>
+                        <p class="staked-value-item">$GAY LP: <span id="staked-lp-usd-value">592$</span></p>
+                    </div>
+                </section>
+            </div>
+
+            <div id="bribes-tab" class="tab-content">
+                <section class="new-bribes-interface">
+                    <h2 class="header-pixelated">Offer a Bribe</h2>
+
+                    <div class="bribe-panel bribe-target-panel">
+                        <h3 class="subheader-pixelated">1. Select Protocol/Token to Bribe</h3>
+                        <div class="searchable-dropdown-container retro-border">
+                            <input type="text" id="bribe-target-search" class="pixel-input" placeholder="Search protocol/token...">
+                            <div id="bribe-target-dropdown" class="dropdown-list-retro">
+                                <!-- JS will populate this -->
+                                <!-- Example:
+                                <div class="dropdown-item-retro" data-token-id="tokenXYZ">
+                                    <img src="public/assets/logo.png" alt="Token Logo" class="token-logo-small-retro">
+                                    <span class="token-name-retro">Token XYZ</span>
+                                    <span class="token-stats-retro">TVL: $0M | APR: 0%</span>
+                                </div>
+                                -->
+                            </div>
+                        </div>
+                        <div id="selected-bribe-target-info" class="selected-info-panel-retro">
+                            <p>Bribing: <strong id="selected-target-name-display">-</strong></p>
+                            <!-- More stats can be shown here once selected -->
+                        </div>
+                    </div>
+
+                    <div class="bribe-panel bribe-payment-panel">
+                        <h3 class="subheader-pixelated">2. Define Your Bribe</h3>
+                        <div class="input-group-retro">
+                            <label for="bribe-payment-token-select" class="label-pixelated">Bribe with:</label>
+                            <select id="bribe-payment-token-select" class="select-retro">
+                                <option value="GAY">$GAY</option>
+                                <option value="USDC">USDC</option>
+                                <option value="ETH">ETH</option>
+                                <!-- More options via JS -->
+                            </select>
+                            <p class="balance-pixelated">Balance: <span id="bribe-payment-token-balance-display">0.00</span></p>
+                        </div>
+                        <div class="input-group-retro">
+                            <label for="bribe-amount-input" class="label-pixelated">Amount:</label>
+                            <input type="number" id="bribe-amount-input" class="pixel-input" placeholder="0.00">
+                            <div class="quick-action-buttons-retro">
+                                <button id="bribe-amount-half-btn" class="pixel-button small-button">Half</button>
+                                <button id="bribe-amount-max-btn" class="pixel-button small-button">Max</button>
+                            </div>
+                        </div>
+                        <p class="estimated-value-pixelated">Estimated Value: $<span id="bribe-usd-value-display">0.00</span></p>
+                    </div>
+
+                    <button id="submit-new-bribe-btn" class="cta-button-retro large-bribe-submit-retro vaporwave-glow">
+                        SUBMIT BRIBE
+                    </button>
+                </section>
+            </div>
+
+            <div id="rewards-tab" class="tab-content">
+                <section class="rewards-overview-section">
+                    <h2 class="rewards-header">Total Earned</h2>
+                    <p class="total-earned-amount"><span id="total-earned-value">0.00</span> USD</p>
+                    <button id="claim-all-rewards" class="cta-button claim-all-rewards-button">Claim All Rewards</button>
+                </section>
+
+                <section class="unclaimed-bribes-section">
+                    <h3 class="rewards-subheader">Unclaimed Bribes</h3>
+                    <div id="unclaimed-bribes-list" class="rewards-list">
+                        <!-- Example item, to be dynamically populated by vote.js -->
+                        <div class="reward-item">
+                            <span class="reward-icon">💰</span>
+                            <span class="reward-details">50 $GAY from Protocol A</span>
+                        </div>
+                        <div class="reward-item">
+                            <span class="reward-icon">💎</span>
+                            <span class="reward-details">100 USDC from Bribe Pool X</span>
+                        </div>
+                        <!-- Empty state, to be managed by vote.js -->
+                        <p class="empty-state" id="unclaimed-bribes-empty" style="display: none;">
+                            <span class="empty-state-icon">👻</span> No unclaimed bribes available.
+                        </p>
+                    </div>
+                    <button id="claim-bribes-button" class="cta-button individual-claim-button">Claim Bribes</button>
+                </section>
+
+                <section class="lp-rewards-section">
+                    <h3 class="rewards-subheader">LP Rewards</h3>
+                    <div id="lp-rewards-list" class="rewards-list">
+                        <!-- Example item, to be dynamically populated by vote.js -->
+                        <div class="reward-item">
+                            <span class="reward-icon">📈</span>
+                            <span class="reward-details">0.5 GAY-LP from Staking</span>
+                        </div>
+                         <!-- Empty state, to be managed by vote.js -->
+                        <p class="empty-state" id="lp-rewards-empty" style="display: none;">
+                            <span class="empty-state-icon">🌌</span> No LP rewards available.
+                        </p>
+                    </div>
+                    <button id="claim-lp-rewards-button" class="cta-button individual-claim-button">Claim LP Rewards</button>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bribe Submission Modal -->
+<!-- GAY Staking Modal -->
+    <div id="gay-staking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal-id="gay-staking-modal">&times;</span>
+            <h2>Manage GAY Stake</h2>
+            <div class="modal-tab-buttons">
+                <button class="modal-tab-button active" data-modal-tab="gay-deposit">Deposit</button>
+                <button class="modal-tab-button" data-modal-tab="gay-withdraw">Withdraw</button>
+            </div>
+
+            <!-- GAY Deposit Tab -->
+            <div id="gay-deposit-tab" class="modal-tab-content active">
+                <div class="form-group">
+                    <label for="gay-deposit-amount">Amount to Stake</label>
+                    <div class="input-group">
+                        <input type="number" id="gay-deposit-amount" placeholder="0.00 $GAY">
+                        <button class="max-button">Max</button>
+                    </div>
+                    <p class="balance-info">Your $GAY Balance: <span id="user-gay-balance-deposit">0.00</span></p>
+                    <p class="usd-preview">USD Value: $<span id="gay-deposit-usd-value">0.00</span></p>
+                </div>
+                <div class="lock-timer-info">
+                    <p>30-Day Lock Timer: <span id="gay-lock-timer">30 days remaining</span></p>
+                </div>
+                <button id="confirm-gay-stake" class="cta-button modal-action-button">Stake $GAY</button>
+            </div>
+
+            <!-- GAY Withdraw Tab -->
+            <div id="gay-withdraw-tab" class="modal-tab-content">
+                <div class="form-group">
+                    <label for="gay-withdraw-amount">Amount to Withdraw</label>
+                    <div class="input-group">
+                        <input type="number" id="gay-withdraw-amount" placeholder="0.00 $GAY">
+                        <button class="max-button">Max</button>
+                    </div>
+                    <p class="balance-info">Your Staked $GAY: <span id="user-staked-gay-balance-withdraw">0.00</span></p>
+                    <p class="usd-preview">USD Value: $<span id="gay-withdraw-usd-value">0.00</span></p>
+                </div>
+                <button id="confirm-gay-withdraw" class="cta-button modal-action-button">Withdraw $GAY</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- LP Staking Modal -->
+    <div id="lp-staking-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" data-modal-id="lp-staking-modal">&times;</span>
+            <h2>Manage LP Stake</h2>
+            <div class="modal-tab-buttons">
+                <button class="modal-tab-button active" data-modal-tab="lp-zap">ZAP</button>
+                <button class="modal-tab-button" data-modal-tab="lp-deposit">Deposit</button>
+                <button class="modal-tab-button" data-modal-tab="lp-withdraw">Withdraw</button>
+            </div>
+
+            <!-- LP ZAP Tab -->
+            <div id="lp-zap-tab" class="modal-tab-content active">
+                <div class="form-group">
+                    <label for="lp-zap-token-amount">Amount</label>
+                    <div class="input-group">
+                        <input type="number" id="lp-zap-token-amount" placeholder="0.00">
+                        <select id="lp-zap-token-select">
+                            <option value="ETH">ETH</option>
+                            <option value="GAY">$GAY</option>
+                            <!-- Add other relevant tokens -->
+                        </select>
+                    </div>
+                    <p class="balance-info">Your Token Balance: <span id="user-zap-token-balance">0.00</span></p>
+                </div>
+                <div class="conversion-estimate">
+                    <p>Estimated LP Received: <span id="lp-zap-conversion-estimate">0.00</span> GAY-LP</p>
+                    <p class="usd-preview">USD Value: $<span id="lp-zap-usd-value">0.00</span></p>
+                </div>
+                <div class="lock-timer-info">
+                    <p>30-Day Lock Timer: <span id="lp-zap-lock-timer">30 days remaining</span></p>
+                </div>
+                <button id="confirm-lp-zap" class="cta-button modal-action-button">ZAP & Stake LP</button>
+            </div>
+
+            <!-- LP Deposit Tab -->
+            <div id="lp-deposit-tab" class="modal-tab-content">
+                <div class="form-group">
+                    <label for="lp-deposit-amount">Amount to Stake</label>
+                    <div class="input-group">
+                        <input type="number" id="lp-deposit-amount" placeholder="0.00 GAY-LP">
+                        <button class="max-button">Max</button>
+                    </div>
+                    <p class="balance-info">Your GAY-LP Balance: <span id="user-lp-balance-deposit">0.00</span></p>
+                    <p class="usd-preview">USD Value: $<span id="lp-deposit-usd-value">0.00</span></p>
+                </div>
+                <div class="lock-timer-info">
+                    <p>30-Day Lock Timer: <span id="lp-deposit-lock-timer">30 days remaining</span></p>
+                </div>
+                <button id="confirm-lp-stake" class="cta-button modal-action-button">Stake LP</button>
+            </div>
+
+            <!-- LP Withdraw Tab -->
+            <div id="lp-withdraw-tab" class="modal-tab-content">
+                <div class="form-group">
+                    <label for="lp-withdraw-amount">Amount to Withdraw</label>
+                    <div class="input-group">
+                        <input type="number" id="lp-withdraw-amount" placeholder="0.00 GAY-LP">
+                        <button class="max-button">Max</button>
+                    </div>
+                    <p class="balance-info">Your Staked GAY-LP: <span id="user-staked-lp-balance-withdraw">0.00</span></p>
+                    <p class="usd-preview">USD Value: $<span id="lp-withdraw-usd-value">0.00</span></p>
+                </div>
+                <button id="confirm-lp-withdraw" class="cta-button modal-action-button">Withdraw LP</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="gif-container">
+        <img src="public/assets/dankill.png" alt="Dank Ill" class="dank-gif">
+        <img src="public/assets/dankill.png" alt="Dank Ill" class="dank-gif">
+        <img src="public/assets/dankill.png" alt="Dank Ill" class="dank-gif">
+        <img src="public/assets/dankill.png" alt="Dank Ill" class="dank-gif">
+        <img src="public/assets/dankill.png" alt="Dank Ill" class="dank-gif">
+        <img src="public/assets/dankill.png" alt="Dank Ill" class="dank-gif">
+        <img src="public/assets/dankill.png" alt="Dank Ill" class="dank-gif">
+        <img src="public/assets/dankill.png" alt="Dank Ill" class="dank-gif">
+        <img src="public/assets/dankill.png" alt="Dank Ill" class="dank-gif">
+        <img src="public/assets/dankill.png" alt="Dank Ill" class="dank-gif">
+
+        <img src="public/assets/Doritos.png" alt="Doritos" class="dank-gif">
+        <img src="public/assets/CoolDoritos.png" alt="Cool Doritos" class="dank-gif">
+        <img src="public/assets/Doritos.png" alt="Doritos" class="dank-gif">
+        <img src="public/assets/CoolDoritos.png" alt="Cool Doritos" class="dank-gif">
+        <img src="public/assets/Doritos.png" alt="Doritos" class="dank-gif">
+        <img src="public/assets/CoolDoritos.png" alt="Cool Doritos" class="dank-gif">
+        <img src="public/assets/Doritos.png" alt="Doritos" class="dank-gif">
+        <img src="public/assets/CoolDoritos.png" alt="Cool Doritos" class="dank-gif">
+        <img src="public/assets/Doritos.png" alt="Doritos" class="dank-gif">
+        <img src="public/assets/CoolDoritos.png" alt="Cool Doritos" class="dank-gif">
+        <img src="public/assets/Doritos.png" alt="Doritos" class="dank-gif">
+        <img src="public/assets/CoolDoritos.png" alt="Cool Doritos" class="dank-gif">
+        <img src="public/assets/Doritos.png" alt="Doritos" class="dank-gif">
+        <img src="public/assets/CoolDoritos.png" alt="Cool Doritos" class="dank-gif">
+
+        <img src="public/assets/Weedleaf.png" alt="Weed Leaf" class="dank-gif">
+        <img src="public/assets/Weedleaf.png" alt="Weed Leaf" class="dank-gif">
+        <img src="public/assets/Weedleaf.png" alt="Weed Leaf" class="dank-gif">
+        <img src="public/assets/Weedleaf.png" alt="Weed Leaf" class="dank-gif">
+        <img src="public/assets/Weedleaf.png" alt="Weed Leaf" class="dank-gif">
+        <img src="public/assets/Weedleaf.png" alt="Weed Leaf" class="dank-gif">
+        <img src="public/assets/Weedleaf.png" alt="Weed Leaf" class="dank-gif">
+        <img src="public/assets/Weedleaf.png" alt="Weed Leaf" class="dank-gif">
+        <img src="public/assets/Weedleaf.png" alt="Weed Leaf" class="dank-gif">
+        <img src="public/assets/Weedleaf.png" alt="Weed Leaf" class="dank-gif">
+
+        <img src="public/assets/mtndewbottle.png" alt="Mountain Dew Bottle" class="dank-gif">
+        <img src="public/assets/mtndewcan.png" alt="Mountain Dew Can" class="dank-gif">
+        <img src="public/assets/mtndewbottle.png" alt="Mountain Dew Bottle" class="dank-gif">
+        <img src="public/assets/mtndewcan.png" alt="Mountain Dew Can" class="dank-gif">
+        <img src="public/assets/mtndewbottle.png" alt="Mountain Dew Bottle" class="dank-gif">
+        <img src="public/assets/mtndewcan.png" alt="Mountain Dew Can" class="dank-gif">
+        <img src="public/assets/mtndewbottle.png" alt="Mountain Dew Bottle" class="dank-gif">
+        <img src="public/assets/mtndewcan.png" alt="Mountain Dew Can" class="dank-gif">
+        <img src="public/assets/mtndewbottle.png" alt="Mountain Dew Bottle" class="dank-gif">
+        <img src="public/assets/mtndewcan.png" alt="Mountain Dew Can" class="dank-gif">
+        <img src="public/assets/mtndewbottle.png" alt="Mountain Dew Bottle" class="dank-gif">
+        <img src="public/assets/mtndewcan.png" alt="Mountain Dew Can" class="dank-gif">
+        <img src="public/assets/mtndewbottle.png" alt="Mountain Dew Bottle" class="dank-gif">
+        <img src="public/assets/mtndewcan.png" alt="Mountain Dew Can" class="dank-gif">
+
+        <img src="public/assets/illuminati.png" alt="Illuminati" class="dank-gif">
+        <img src="public/assets/illuminati.png" alt="Illuminati" class="dank-gif">
+        <img src="public/assets/illuminati.png" alt="Illuminati" class="dank-gif">
+        <img src="public/assets/illuminati.png" alt="Illuminati" class="dank-gif">
+        <img src="public/assets/illuminati.png" alt="Illuminati" class="dank-gif">
+        <img src="public/assets/illuminati.png" alt="Illuminati" class="dank-gif">
+        <img src="public/assets/illuminati.png" alt="Illuminati" class="dank-gif">
+        <img src="public/assets/illuminati.png" alt="Illuminati" class="dank-gif">
+        <img src="public/assets/illuminati.png" alt="Illuminati" class="dank-gif">
+        <img src="public/assets/illuminati.png" alt="Illuminati" class="dank-gif">
+    </div>
+    <div class="snoop-container">
+        <img src="public/assets/snoop.png" alt="Snoop Dogg" class="snoop snoop-left">
+        <img src="public/assets/snoop.png" alt="Snoop Dogg" class="snoop snoop-right">
+    </div>
+
+    <audio id="airhorn-sound" src="https://www.myinstants.com/media/sounds/mlg-airhorn.mp3" preload="auto"></audio>
+    <audio id="hitmarker-sound" src="https://www.myinstants.com/media/sounds/hitmarker.mp3" preload="auto"></audio>
+
+    <script src="script.js"></script>
+    <script src="vote.js"></script>
+    <script>
+        // Ensure this script runs after the navbar is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const connectWalletBtnNavbar = document.getElementById('connectWalletBtnNavbar');
+            if (connectWalletBtnNavbar) {
+                const nickname = localStorage.getItem('userNickname');
+                if (nickname) {
+                    connectWalletBtnNavbar.textContent = nickname;
+                    connectWalletBtnNavbar.classList.add('wallet-connected');
+                }
+            }
+        });
+    </script>
+    <!-- Footer Start -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://twitter.com/engayged" target="_blank" rel="noopener noreferrer" class="footer-icon-link" aria-label="Twitter">TW</a>
+                <a href="https://telegram.org/engayged" target="_blank" rel="noopener noreferrer" class="footer-icon-link" aria-label="Telegram">TG</a>
+                <a href="https://discord.com/invite/engayged" target="_blank" rel="noopener noreferrer" class="footer-icon-link" aria-label="Discord">DS</a>
+                <a href="/docs" class="footer-icon-link" aria-label="Documentation">DOCS</a>
+                <a href="/gbribes" class="footer-icon-link" aria-label="GBribes">GB</a>
+            </div>
+            <div class="footer-info">
+                <p class="copyright">&copy; 2025 Engayged</p>
+                <p class="slogan">"Stay Engayged, Stay Dank."</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer End -->
+</body>
+</html>

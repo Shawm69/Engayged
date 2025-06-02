@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'VT323', monospace;
+    overflow-y: auto; /* Allow vertical scrollbars */
+    /* background: #0d0a1b; */ /* Dark base for vaporwave - replaced by image */
+    color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align to top to respect padding */
+    min-height: 100vh; /* Full viewport height */
+    position: relative;
+    padding-top: 75px; /* Navbar height (70px) + 5px gap */
+    background-image: url('public/assets/danon.jpg'); /* Vaporwave background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box; /* Ensure padding is included in height */
+}
+
+.background-vaporwave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #4b0082, #8a2be2, #00ced1, #ff1493); /* Rainbow tints */
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    opacity: 0.7;
+    z-index: -2;
+}
+
+.background-vaporwave::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        repeating-linear-gradient(0deg, #00000022, #00000022 1px, transparent 1px, transparent 20px), /* Horizontal grid */
+        repeating-linear-gradient(90deg, #00000022, #00000022 1px, transparent 1px, transparent 20px); /* Vertical grid */
+    z-index: -1;
+}
+
+/* Subtle sparkles/noise */
+.background-vaporwave::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="60" r="0.8" fill="rgba(255,255,255,0.08)"/><circle cx="90" cy="20" r="1.2" fill="rgba(255,255,255,0.12)"/><circle cx="30" cy="80" r="0.9" fill="rgba(255,255,255,0.09)"/></svg>');
+    background-size: 20px 20px; /* Adjust size for sparkle density */
+    opacity: 0.3;
+    z-index: -1;
+}
+
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    text-align: center;
+    z-index: 1;
+    padding: 30px; /* Match profile.css */
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 900px;
+    background-color: rgba(0, 0, 0, 0.7); /* Match profile.css */
+    border: 3px solid #ff00ff; /* Neon pink border - Match profile.css */
+    box-shadow: 0 0 20px #ff00ff, inset 0 0 10px #ff00ff; /* Outer and inner glow - Match profile.css */
+    border-radius: 10px; /* Match profile.css */
+    backdrop-filter: blur(5px); /* Slightly blurred background - Match profile.css */
+    /* margin-top: 80px;  This is handled by navbar.css for .has-navbar */
+}
+
+.neon-text {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 5em;
+    color: #00ff00; /* Neon Green like profile page titles */
+    text-shadow:
+        0 0 5px #fff, /* Inner white core */
+        0 0 10px #00ff00, /* Green glow */
+        0 0 20px #00ff00,
+        0 0 35px #00ff00,
+        0 0 50px #ff00ff, /* Pink outer glow */
+        0 0 70px #ff00ff;
+    animation: pulseAndGlow 1.5s ease-in-out infinite alternate; /* New animation */
+    margin-bottom: 50px;
+}
+
+@keyframes pulseAndGlow {
+    from {
+        text-shadow:
+            0 0 5px #fff,
+            0 0 10px #00ff00,
+            0 0 20px #00ff00,
+            0 0 35px #00ff00,
+            0 0 50px #ff00ff,
+            0 0 70px #ff00ff;
+        transform: scale(1);
+    }
+    to {
+        text-shadow:
+            0 0 7px #fff,      /* Slightly stronger white core */
+            0 0 15px #00ff00, /* Brighter green */
+            0 0 25px #00ff00,
+            0 0 45px #00ff00,
+            0 0 60px #ff00ff, /* Brighter pink */
+            0 0 80px #ff00ff;
+        transform: scale(1.03); /* Slight pulse */
+    }
+}
+
+.glowing-card {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid #ff00ff; /* Pink border for retro feel */
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 0 30px #ff00ff, 0 0 60px #ff00ff; /* Pink glow */
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto; /* Center the card */
+    max-width: 600px;
+    width: 90%; /* Responsive width */
+}
+
+.glowing-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(60deg, rgba(255, 0, 255, 0.2) 0%, rgba(0, 255, 255, 0.2) 50%, rgba(255, 0, 255, 0.2) 100%);
+    transform: rotate(45deg);
+    animation: borderLight 5s linear infinite;
+    z-index: -1;
+}
+
+@keyframes borderLight {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.gay-amount-label {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #d1d1d1;
+}
+
+.gay-amount {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 4em;
+    color: #aaff00; /* Bright green for money */
+    text-shadow: 0 0 15px #aaff00, 0 0 30px #aaff00;
+    margin-bottom: 30px;
+}
+
+.claim-button {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #ff00ff; /* Vibrant button color */
+    color: #fff;
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.8em;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 20px #ff00ff;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.claim-button:hover {
+    background-color: #00ffff; /* Aqua on hover */
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px #00ffff, 0 0 50px #00ffff;
+}
+
+.claim-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: all 0.5s ease;
+    z-index: -1;
+}
+
+.claim-button:hover::before {
+    left: 100%;
+}
+
+.celebration-message {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3em;
+    color: #aaff00; /* Green for success */
+    text-shadow: 0 0 10px #aaff00, 0 0 20px #aaff00;
+    margin-top: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .neon-text {
+        font-size: 3.5em;
+    }
+    .gay-amount {
+        font-size: 3em;
+    }
+    .claim-button {
+        font-size: 1.5em;
+        padding: 12px 30px;
+    }
+    .celebration-message {
+        font-size: 2em;
+    }
+}
+
+@media (max-width: 480px) {
+    .neon-text {
+        font-size: 2.5em;
+        margin-bottom: 30px;
+    }
+    .gay-amount {
+        font-size: 2.2em;
+    }
+    .claim-button {
+        font-size: 1.2em;
+        padding: 10px 20px;
+    }
+    .glowing-card {
+        padding: 20px;
+    }
+    .celebration-message {
+        font-size: 1.5em;
+    }
+}

@@ -1,0 +1,1821 @@
+/* General styles for the vote page to match existing theme */
+html {
+    overflow-x: hidden; /* Explicitly prevent horizontal scroll on html */
+    /* Removing height, min-height, and overflow-y from html to let body control scrolling. */
+}
+
+body {
+    min-height: 100vh; /* Ensure the body takes at least the full viewport height */
+    overflow-y: auto;   /* Body should scroll if its content exceeds viewport height */
+    overflow-x: hidden; /* Consistent with style.css, prevent body horizontal scroll */
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff;
+    background-color: #1a001a; /* Dark background for vaporwave feel */
+    /* Removed padding-top here. Content padding is now handled by navbar.css on .body.has-navbar .content */
+}
+
+.background-overlay {
+    background: linear-gradient(45deg, rgba(255,0,255,0.1), rgba(0,255,255,0.1));
+    animation: neon-pulse 5s infinite alternate;
+}
+
+@keyframes neon-pulse {
+    0% { background-color: rgba(255,0,255,0.1); }
+    100% { background-color: rgba(0,255,255,0.1); }
+}
+
+.content {
+    padding: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 2px solid #ff00ff;
+    box-shadow: 0 0 20px rgba(255,0,255,0.8), 0 0 30px rgba(0,255,255,0.8);
+    border-radius: 10px;
+    margin-top: 0; /* Ensure no extra margin for content block, relying on body padding */
+    position: relative; /* For inner glow effects */
+    z-index: 10;
+}
+
+.main-header {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 15px; /* Decreased spacing */
+}
+
+.rainbow-text {
+    animation: rainbow-glow 3s infinite alternate;
+}
+
+@keyframes rainbow-glow {
+    0% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
+    25% { color: #00ffff; text-shadow: 0 0 10px #00ffff; }
+    50% { color: #ffff00; text-shadow: 0 0 10px #ffff00; }
+    75% { color: #00ff00; text-shadow: 0 0 10px #00ff00; }
+    100% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff; }
+}
+
+/* Tab Button Styles */
+.tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0; /* Remove margin-bottom from tab buttons */
+    gap: 10px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.tab-button {
+    background-color: rgba(50, 0, 50, 0.7);
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1em;
+    padding: 12px 25px;
+    border: 2px solid #ff00ff;
+    border-radius: 8px;
+    cursor: pointer;
+    text-shadow: 0 0 5px #ff00ff;
+    box-shadow: 0 0 10px rgba(255,0,255,0.5);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.tab-button:hover {
+    background-color: rgba(0, 255, 255, 0.3);
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0,255,255,0.7), 0 0 25px rgba(255,0,255,0.7);
+    transform: translateY(-2px);
+}
+
+.tab-button.active {
+    background-color: #00ffff;
+    color: #1a001a;
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px #00ffff, 0 0 30px #ff00ff;
+    animation: active-tab-pulse 1.5s infinite alternate;
+    text-shadow: none; /* Remove text shadow for better contrast */
+}
+
+@keyframes active-tab-pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.03); }
+}
+
+/* Tab Content Styles */
+.tab-content {
+    display: none; /* Hidden by default */
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 1px solid #00ffff;
+    box-shadow: 0 0 10px rgba(0,255,255,0.5), 0 0 20px rgba(255,0,255,0.5);
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px; /* Add top margin to push content down after tab buttons */
+}
+
+.tab-content.active {
+    display: block; /* Show active tab content */
+}
+
+.tab-content {
+    min-height: 400px; /* Ensure consistent minimum height for all tab content */
+}
+
+/* Specific section styles (adjusting existing) */
+.vote-container section {
+    /* Removed padding, margin-bottom and border-radius here as it's now handled by .tab-content */
+    background-color: transparent; /* Make internal sections transparent */
+    border: none; /* Remove border from internal sections */
+    box-shadow: none; /* Remove box-shadow from internal sections */
+    padding: 0; /* Remove padding from internal sections */
+    margin-bottom: 0; /* Remove margin from internal sections */
+}
+.tab-content section {
+    background-color: rgba(0, 0, 0, 0.5); /* Re-apply background to inner sections */
+    border: 1px solid #00ffff; /* Re-apply border to inner sections */
+    box-shadow: 0 0 10px rgba(0,255,255,0.5), 0 0 20px rgba(255,0,255,0.5); /* Re-apply shadow to inner sections */
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+}
+
+/* Ensure the first child of any tab section doesn't have extra top margin */
+.tab-content section > *:first-child {
+    margin-top: 0;
+}
+
+/* Individual tab content styling */
+.lock-section .cta-button, .bribes-section .cta-button, .rewards-section .cta-button {
+    margin: 15px 10px 0 0; /* Adjust button margins within tabs */
+    display: inline-block; /* Make lock buttons inline */
+}
+
+.lock-position-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(30, 0, 30, 0.7);
+    border: 1px solid #00ffff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px rgba(0,255,255,0.5);
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.lock-position-item p {
+    margin: 0;
+    font-size: 1em;
+    color: #fff;
+    flex-grow: 1;
+}
+
+.lock-position-item p span {
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+#current-locks, #bribe-list, #unclaimed-bribes, #lp-rewards {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px dashed #00ffff;
+    border-radius: 5px;
+    background-color: rgba(30, 0, 30, 0.7);
+}
+
+#current-locks p, #bribe-list p, #unclaimed-bribes p, #lp-rewards p {
+    color: #aaa;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+.rewards-section p span {
+    color: #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+/* Bribes Tab Specific Styles */
+.bribe-item {
+    background-color: rgba(30, 0, 30, 0.7);
+    border: 1px solid #ff00ff;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 5px rgba(255,0,255,0.5);
+}
+
+.bribe-item {
+    display: flex;
+    flex-direction: row; /* Arrange items in a row */
+    align-items: center; /* Align items vertically in the center */
+    justify-content: space-between; /* Push items to ends */
+    background-color: rgba(30, 0, 30, 0.7);
+    border: 1px solid #ff00ff;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 0 5px rgba(255,0,255,0.5);
+}
+
+.bribe-token-logo {
+    width: 50px;
+    height: 50px;
+    margin-left: 20px; /* Add margin to separate from content */
+    margin-bottom: 0; /* Reset margin */
+    border-radius: 50%;
+    border: 2px solid #00ffff;
+    box-shadow: 0 0 8px #00ffff;
+}
+
+.bribe-item-content {
+    flex-grow: 1; /* Allows content to take available space */
+}
+
+.bribe-item h3 {
+    color: #00ffff;
+    text-shadow: 0 0 5px #00ffff;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+@media (max-width: 768px) {
+    .bribe-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .bribe-token-logo {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+}
+
+.bribe-item p {
+    font-size: 0.9em;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+/* Specific style for the total bribed amount to make it stand out */
+.bribe-item p .total-bribed-amount {
+    color: #ffcc00; /* Gold-ish color for total bribed amount */
+    font-weight: bold;
+    text-shadow: 0 0 5px #ffcc00;
+}
+
+.bribe-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+.bribe-input-group label {
+    font-size: 0.9em;
+    color: #00ff00;
+    text-shadow: 0 0 3px #00ff00;
+}
+
+.bribe-input-group input[type="number"] {
+    width: 100px;
+    padding: 8px;
+    background-color: #333;
+    border: 1px solid #ff00ff;
+    color: #fff;
+    border-radius: 3px;
+    text-align: center;
+}
+
+.bribe-input-group select {
+    padding: 8px;
+    background-color: #333;
+    border: 1px solid #00ffff;
+    color: #fff;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.mini-button {
+    padding: 8px 15px;
+    font-size: 0.9em;
+    margin: 0; /* Override default cta-button margin */
+    box-shadow: 0 0 8px #00ffff;
+}
+
+.mini-button:hover {
+    box-shadow: 0 0 12px #ff00ff;
+}
+
+/* Responsive adjustments for bribe input group */
+@media (max-width: 480px) {
+    .bribe-input-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .bribe-input-group input[type="number"],
+    .bribe-input-group select,
+    .mini-button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+.veGAY-balance-section h2, .voting-panel h2, .vote-countdown-section h2, .lock-section h2, .bribes-section h2, .rewards-section h2 {
+    font-size: 1.5em;
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(0,255,255,0.5);
+    padding-bottom: 10px;
+}
+
+/* Voting Panel Styles */
+.tokens-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.token-item {
+    display: flex;
+    flex-direction: column; /* Stack header, slider, and controls vertically */
+    background-color: rgba(30, 0, 30, 0.7);
+    border: 1px solid #ff00ff;
+    border-radius: 8px; /* Slightly more rounded corners */
+    padding: 20px 15px; /* Increased vertical padding */
+    box-shadow: 0 0 8px rgba(255,0,255,0.6);
+    transition: all 0.3s ease; /* For hover effects */
+    gap: 15px; /* Space between header, slider, and controls */
+}
+
+.token-item:hover {
+    border-color: #00ffff;
+    box-shadow: 0 0 12px rgba(0,255,255,0.8), 0 0 5px rgba(255,0,255,0.5); /* Border glow and subtle inner pulse */
+    transform: translateY(-2px);
+}
+
+.token-info-header {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 15px; /* Space between logo and details */
+}
+
+.token-logo {
+    width: 45px; /* Slightly larger logo */
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #00ffff;
+    box-shadow: 0 0 8px #00ffff;
+    flex-shrink: 0; /* Prevent logo from shrinking */
+}
+
+.token-details {
+    display: flex;
+    justify-content: space-between; /* Evenly space items */
+    align-items: center;
+    flex-grow: 1; /* Take remaining space */
+    gap: 10px; /* Gap between detail items */
+    flex-wrap: wrap; /* Allow wrapping if space is tight */
+}
+
+.token-name {
+    font-size: 1.2em; /* Slightly larger */
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 7px #ff00ff, 0 0 12px #ff00ff; /* Keep headers bright */
+    margin-right: 10px; /* Consistent margin */
+}
+
+.vote-share, .bribe-tag {
+    font-size: 0.95em; /* Slightly larger for readability */
+    color: #ccc; /* Lighter than #aaa for better contrast */
+    text-shadow: 0 0 3px rgba(0, 255, 255, 0.5), 0 0 5px rgba(255, 0, 255, 0.3); /* Softer glow */
+    margin-right: 10px; /* Consistent margin */
+}
+
+.bribe-tag {
+    color: #ffdd57; /* Brighter gold */
+    font-style: italic;
+    text-shadow: 0 0 4px rgba(255, 221, 87, 0.6); /* Gold glow */
+}
+
+.multiplier-info {
+    display: flex;
+    flex-direction: column; /* Stack multipliers vertically */
+    gap: 8px; /* Space between multiplier lines */
+    width: 100%;
+    padding: 8px 0; /* Add some vertical padding */
+    margin-top: 10px; /* Space above the multiplier section */
+    align-items: flex-start; /* Align text to the start */
+}
+
+.multiplier-label {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.85em; /* Slightly smaller than token name/bribe */
+    color: #cccccc; /* Light grey for the label part */
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+}
+
+.current-multiplier-value,
+.next-multiplier-value {
+    font-weight: bold;
+    font-family: 'Press Start 2P', cursive;
+    margin-left: 5px; /* Space between label and value */
+}
+
+.current-multiplier-value {
+    color: #00ff00; /* Neon green */
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 3px rgba(255, 255, 255, 0.5); /* Green glow with a hint of white */
+}
+
+.next-multiplier-value {
+    color: #00ffff; /* Neon Cyan */
+    text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff, 0 0 3px rgba(255, 255, 255, 0.5); /* Cyan glow with a hint of white */
+}
+
+.vote-slider {
+    flex-grow: 1;
+    -webkit-appearance: none;
+    appearance: none; /* Standard property */
+    width: 100%; /* Full width within its container */
+    height: 12px; /* Thicker progress bar */
+    background: #444; /* Darker base for contrast */
+    outline: none;
+    opacity: 0.8;
+    transition: opacity .2s, box-shadow .2s;
+    border-radius: 6px; /* Rounded to match height */
+    /* Neon glow - generic for now, can be themed per token later */
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.4), 0 0 8px rgba(255, 0, 255, 0.3);
+}
+
+.vote-slider:hover {
+    opacity: 1;
+    box-shadow: 0 0 8px rgba(0, 255, 255, 0.7), 0 0 12px rgba(255, 0, 255, 0.5);
+}
+
+.vote-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px; /* Slightly larger thumb */
+    height: 22px;
+    border-radius: 50%;
+    background: #00ffff;
+    cursor: pointer;
+    box-shadow: 0 0 8px #00ffff, 0 0 4px #fff; /* Enhanced glow */
+    border: 1px solid #1a001a; /* Inner border for definition */
+}
+
+.vote-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #00ffff;
+    cursor: pointer;
+    box-shadow: 0 0 8px #00ffff, 0 0 4px #fff;
+    border: 1px solid #1a001a;
+}
+
+.vote-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 10px; /* Increased vertical spacing */
+    gap: 15px;
+}
+
+.vote-input {
+    flex-grow: 1; /* Allow input to take more space */
+    max-width: 100px; /* But not too much */
+    padding: 8px; /* More padding */
+    background-color: #2a2a2a; /* Slightly lighter dark */
+    border: 1px solid #ff00ff;
+    color: #fff;
+    border-radius: 4px; /* Consistent rounding */
+    text-align: center;
+    font-size: 1em;
+}
+
+.allocated-votes {
+    min-width: 50px; /* Ensure enough space for "100%" */
+    text-align: right;
+    font-weight: bold;
+    color: #00ff00;
+    text-shadow: 0 0 5px #00ff00; /* Standard green glow */
+    font-size: 1em;
+}
+/* Redesigned Token Item Styles */
+.token-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding-bottom: 10px; /* Add some space before multipliers */
+    border-bottom: 1px solid rgba(255, 0, 255, 0.3); /* Subtle divider */
+    margin-bottom: 10px; /* Space after header */
+}
+
+.token-identity {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between logo and name */
+}
+
+.token-bribe {
+    padding-left: 15px; /* More padding for bribe amount */
+}
+
+.token-multipliers {
+    display: flex;
+    justify-content: space-around; /* Distribute blocks evenly */
+    align-items: stretch; /* Make blocks same height */
+    width: 100%;
+    gap: 15px; /* Space between multiplier blocks */
+    margin-bottom: 15px; /* Space before voting controls */
+    padding: 10px 0;
+    border-top: 1px solid rgba(0, 255, 255, 0.2); /* Optional top divider */
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2); /* Optional bottom divider */
+}
+
+.multiplier-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(40, 0, 40, 0.6); /* Darker purple block */
+    border: 1px solid #00ffff; /* Cyan pixel border */
+    border-radius: 6px;
+    padding: 10px 15px; /* Padding within block */
+    text-align: center;
+    min-width: 120px; /* Consistent width */
+    box-shadow: 0 0 6px rgba(0, 255, 255, 0.4);
+    flex-grow: 1; /* Allow blocks to grow equally */
+}
+
+.multiplier-block .multiplier-label {
+    font-size: 0.8em; /* Smaller label */
+    color: #ccc;
+    margin-bottom: 5px;
+    text-shadow: none; /* Cleaner look for label */
+}
+
+.multiplier-block .current-multiplier-value,
+.multiplier-block .next-multiplier-value {
+    font-size: 1.1em; /* Prominent value */
+    font-weight: bold;
+    line-height: 1.2;
+}
+/* Keep existing .current-multiplier-value and .next-multiplier-value styles for color and glow */
+
+.token-voting-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Space between slider and input group */
+    width: 100%;
+    padding-top: 10px; /* Space above controls */
+    border-top: 1px solid rgba(255, 0, 255, 0.3); /* Subtle divider */
+}
+
+.vote-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between input and percentage */
+    width: 100%;
+}
+
+.vote-input-group .vote-input {
+    flex-grow: 1; /* Input takes available space */
+    max-width: none; /* Remove previous max-width if it conflicts */
+}
+
+.vote-input-group .allocated-votes {
+    min-width: 60px; /* Ensure space for percentage */
+    text-align: right;
+}
+
+/* Adjustments to existing .token-item for new structure */
+.token-item {
+    /* .token-item is already flex-direction: column, gap: 15px */
+    /* padding was 20px 15px, this should be fine */
+}
+
+/* Adjust token-details and multiplier-info if they are no longer direct children or used */
+/* .token-details is now part of .token-identity or .token-bribe, can remove/adjust if needed */
+/* .multiplier-info is replaced by .token-multipliers and .multiplier-block */
+/* Remove or comment out old .token-info-header direct styles if conflicting, new one is .token-item-header */
+/* Remove or comment out old .multiplier-info direct styles */
+.multiplier-info { /* Old class, ensure it's not interfering */
+    display: none; /* Hide if not removed from HTML and causing layout issues */
+}
+/* Ensure old .vote-controls direct styles don't conflict with .token-voting-controls or .vote-input-group */
+/* .vote-controls might need to be display: none if it's still in HTML and causing issues */
+.vote-controls { /* Old class */
+    display: none; /* Hide if not removed from HTML */
+}
+
+/* Responsive adjustments for the new structure */
+@media (max-width: 768px) {
+    .token-item-header {
+        flex-direction: column;
+        align-items: flex-start; /* Align items to the start */
+        gap: 10px; /* Space between identity and bribe when stacked */
+    }
+    .token-bribe {
+        padding-left: 0; /* Reset padding when stacked */
+        align-self: flex-start; /* Align bribe to the start */
+    }
+
+    .token-multipliers {
+        flex-direction: column; /* Stack multiplier blocks */
+        align-items: stretch; /* Make blocks full width */
+        gap: 10px;
+    }
+    .multiplier-block {
+        min-width: 0; /* Allow full width */
+        padding: 8px 10px;
+    }
+    .multiplier-block .multiplier-label {
+        font-size: 0.75em;
+    }
+    .multiplier-block .current-multiplier-value,
+    .multiplier-block .next-multiplier-value {
+        font-size: 1em;
+    }
+
+    .vote-input-group {
+        /* Behavior for vote-input and allocated-votes within this group on mobile */
+        /* The existing .vote-controls responsive styles might already handle stacking input and percentage,
+           but .vote-input-group is the new parent. */
+    }
+}
+
+@media (max-width: 480px) {
+    .token-identity .token-name {
+        font-size: 1em; /* Further reduce font size for very small screens */
+    }
+    .token-identity .token-logo {
+        width: 35px;
+        height: 35px;
+    }
+    .bribe-tag {
+        font-size: 0.8em;
+    }
+    .multiplier-block .multiplier-label {
+        font-size: 0.7em;
+    }
+    .multiplier-block .current-multiplier-value,
+    .multiplier-block .next-multiplier-value {
+        font-size: 0.9em;
+    }
+
+    .vote-input-group .vote-input,
+    .vote-input-group .allocated-votes {
+        font-size: 0.85em; /* Adjust vote input/percentage text */
+    }
+}
+
+.progress-bar-container {
+.progress-bar-container {
+    width: 100%;
+    background-color: #333;
+    border: 1px solid #00ffff;
+    border-radius: 5px;
+    margin-top: 20px;
+    overflow: hidden;
+    height: 25px;
+    position: relative;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #ff00ff;
+    width: 0%;
+    transition: width 0.3s ease-in-out;
+    border-radius: 5px;
+    box-shadow: 0 0 8px #ff00ff;
+}
+
+.progress-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    line-height: 25px;
+    color: #fff;
+    font-size: 0.9em;
+    text-shadow: 0 0 3px #000;
+}
+
+/* Call to Action Button */
+.cta-button {
+    display: block;
+    width: fit-content;
+    margin: 30px auto;
+    padding: 15px 30px;
+    background-color: #00ffff;
+    color: #1a001a;
+    font-size: 1.2em;
+    text-decoration: none;
+    border-radius: 8px;
+    text-shadow: none;
+    box-shadow: 0 0 15px #00ffff, 0 0 25px #ff00ff;
+    transition: all 0.3s ease;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover:not(:disabled) {
+    background-color: #ff00ff;
+    color: #fff;
+    box-shadow: 0 0 20px #ff00ff, 0 0 30px #00ffff;
+    transform: scale(1.05);
+}
+
+.cta-button:disabled {
+    background-color: #555;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .content {
+        margin-top: 0; /* Ensure no extra margin for content block on mobile, relying on body padding */
+        padding: 15px;
+    }
+
+    .main-header {
+        font-size: 1.8em;
+    }
+
+    .vote-container section {
+        padding: 15px;
+    }
+
+    .veGAY-balance-section h2, .voting-panel h2, .vote-countdown-section h2 {
+        font-size: 1.2em;
+    }
+.token-item {
+        /* flex-direction is already column by default due to parent .tokens-list */
+        padding: 15px 10px; /* Adjust padding for smaller screens */
+        gap: 10px;
+    }
+
+    .token-info-header {
+        flex-direction: column; /* Stack logo and details vertically */
+        align-items: flex-start; /* Align to start */
+        gap: 8px;
+    }
+    
+    .token-details {
+        flex-direction: column; /* Stack details vertically */
+        align-items: flex-start;
+        gap: 5px;
+        width: 100%; /* Ensure it takes full width */
+    }
+
+    .token-name, .vote-share, .bribe-tag {
+        margin-right: 0; /* Remove right margin as they are stacked */
+        font-size: 1em; /* Adjust font sizes for mobile */
+    }
+    .vote-share, .bribe-tag {
+        font-size: 0.85em;
+    }
+
+    .multiplier-info {
+        margin-top: 8px;
+        gap: 5px;
+        padding: 5px 0;
+    }
+
+    .multiplier-label {
+        font-size: 0.75em;
+    }
+
+    .vote-slider {
+        margin: 10px 0; /* Keep vertical margin */
+        height: 10px; /* Slightly thinner for mobile if needed */
+    }
+    .vote-slider::-webkit-slider-thumb {
+        width: 18px;
+        height: 18px;
+    }
+    .vote-slider::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+    }
+
+    .vote-controls {
+        flex-direction: column; /* Stack input and percentage */
+        align-items: stretch; /* Make children take full width */
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .vote-input {
+        width: 100%; /* Full width */
+        margin-left: 0;
+        font-size: 0.9em;
+    }
+
+    .allocated-votes {
+        text-align: left; /* Align left when stacked */
+        font-size: 0.9em;
+        min-width: auto; /* Reset min-width */
+    }
+}
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.9);
+    margin: 5% auto; /* 5% from the top and centered */
+    padding: 30px;
+    border: 2px solid #ff00ff;
+    border-radius: 10px;
+    width: 80%; /* Could be more responsive */
+    max-width: 500px;
+    box-shadow: 0 0 20px rgba(255,0,255,0.8), 0 0 30px rgba(0,255,255,0.8);
+    position: relative;
+    animation: neon-modal-glow 1.5s infinite alternate;
+}
+
+@keyframes neon-modal-glow {
+    0% { box-shadow: 0 0 20px rgba(255,0,255,0.8), 0 0 30px rgba(0,255,255,0.8); }
+    100% { box-shadow: 0 0 25px rgba(0,255,255,0.8), 0 0 35px rgba(255,0,255,0.8); }
+}
+
+.modal-content h2 {
+    color: #00ffff;
+    text-shadow: 0 0 8px #00ffff;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 1.8em;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #ff00ff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #fff;
+    font-size: 0.9em;
+    text-shadow: 0 0 3px #00ffff;
+}
+
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    background-color: #333;
+    border: 1px solid #00ffff;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 1em;
+    outline: none;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
+.form-group select:focus {
+    border-color: #ff00ff;
+    box-shadow: 0 0 8px rgba(255,0,255,0.7);
+}
+
+#confirm-bribe-submit {
+    width: 100%;
+    margin-top: 20px;
+}
+/* Styling for veGAY balance */
+.veGAY-balance-value {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(to right, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-size: 1.5em; /* Makes the balance stand out a bit more */
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Adds a subtle shadow like the main header */
+    display: inline-block; /* Ensures background gradient applies correctly */
+}
+/* Staking Stats Section Styles */
+.staking-stats-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: rgba(10, 0, 10, 0.6); /* Darker, distinct background */
+    border: 1px solid #ff00ff; /* Magenta border */
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(255,0,255,0.7), 0 0 10px rgba(0,255,255,0.5) inset; /* Outer and inner glow */
+    text-align: center; /* Center align the content of this section */
+}
+
+.staking-stats-section h3 {
+    font-size: 1.4em;
+    color: #00ffff; /* Cyan heading */
+    text-shadow: 0 0 8px #00ffff, 0 0 12px #00ffff; /* Stronger cyan glow */
+    margin-bottom: 20px;
+    border-bottom: 1px dashed rgba(0,255,255,0.4); /* Dashed underline */
+    padding-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.staked-value-item {
+    font-size: 1.1em;
+    color: #f0f0f0; /* Off-white for general text */
+    margin-bottom: 15px;
+    line-height: 1.6;
+    text-shadow: 0 0 3px rgba(255,255,255,0.2); /* Subtle white glow for readability */
+}
+
+.staked-value-item span {
+    font-family: 'Press Start 2P', cursive; /* Pixel font */
+    font-weight: bold;
+    font-size: 1.3em; /* Larger for emphasis */
+    margin-left: 10px;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+#staked-gay-usd-value {
+    color: #00ff00; /* Neon green */
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px rgba(0,255,0,0.7); /* Green glow */
+    background-color: rgba(0, 50, 0, 0.3); /* Dark green tint background */
+}
+
+#staked-lp-usd-value {
+    color: #ff00ff; /* Neon magenta */
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff, 0 0 15px rgba(255,0,255,0.7); /* Magenta glow */
+    background-color: rgba(50, 0, 50, 0.3); /* Dark magenta tint background */
+}
+
+/* Responsive adjustments for staking stats */
+@media (max-width: 768px) {
+    .staking-stats-section {
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    .staking-stats-section h3 {
+        font-size: 1.2em;
+    }
+
+    .staked-value-item {
+        font-size: 1em;
+    }
+
+    .staked-value-item span {
+        font-size: 1.15em;
+        display: block; /* Stack span below label on small screens */
+        margin-left: 0;
+        margin-top: 5px;
+    }
+}
+/* GAY and LP Staking Modal Styles */
+.modal-tab-buttons {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.3); /* Neon separator */
+    padding-bottom: 15px;
+}
+
+.modal-tab-button {
+    background-color: rgba(50, 0, 50, 0.6); /* Dark purple, semi-transparent */
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9em;
+    padding: 10px 20px;
+    border: 2px solid #ff00ff; /* Neon pink border */
+    border-radius: 8px;
+    cursor: pointer;
+    text-shadow: 0 0 5px #ff00ff;
+    box-shadow: 0 0 8px rgba(255,0,255,0.5);
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.modal-tab-button:hover {
+    background-color: rgba(0, 255, 255, 0.2); /* Cyan highlight on hover */
+    border-color: #00ffff;
+    box-shadow: 0 0 12px rgba(0,255,255,0.7), 0 0 20px rgba(255,0,255,0.6);
+    transform: translateY(-1px);
+}
+
+.modal-tab-button.active {
+    background-color: #00ffff; /* Active tab is bright cyan */
+    color: #1a001a; /* Dark text for contrast */
+    border-color: #ff00ff; /* Pink border still visible */
+    box-shadow: 0 0 15px #00ffff, 0 0 25px #ff00ff;
+    animation: active-modal-tab-pulse 1.2s infinite alternate;
+    text-shadow: none;
+}
+
+@keyframes active-modal-tab-pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.02); }
+}
+
+.modal-tab-content {
+    display: none; /* Hidden by default */
+    padding: 15px 0; /* Padding top/bottom, no side padding as form-groups will handle it */
+}
+
+.modal-tab-content.active {
+    display: block; /* Show active tab content */
+    animation: fadeInModalTab 0.5s ease-in-out;
+}
+
+@keyframes fadeInModalTab {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Form elements within modals */
+.modal .form-group {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: rgba(20, 0, 20, 0.5); /* Slightly different background for grouping */
+    border: 1px solid rgba(255, 0, 255, 0.3); /* Faint pink border */
+    border-radius: 6px;
+}
+
+.modal .form-group label {
+    display: block;
+    margin-bottom: 10px; /* Increased space */
+    color: #00ffff; /* Cyan label text */
+    font-size: 1em; /* Slightly larger label */
+    text-shadow: 0 0 5px #00ffff;
+}
+
+.modal .input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(10, 0, 10, 0.7); /* Darker background for input area */
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #00ffff; /* Cyan border for the group */
+    box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.3); /* Inner cyan glow */
+}
+
+.modal .input-group input[type="number"],
+.modal .input-group select {
+    flex-grow: 1;
+    padding: 12px; /* More padding */
+    background-color: #1c001c; /* Very dark purple */
+    border: 1px solid #ff00ff; /* Neon pink border */
+    color: #fff;
+    border-radius: 4px;
+    font-size: 1em;
+    font-family: 'Press Start 2P', cursive;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+}
+.modal .input-group input[type="number"]::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.modal .input-group input[type="number"]:focus,
+.modal .input-group select:focus {
+    border-color: #00ffff; /* Cyan border on focus */
+    box-shadow: 0 0 10px rgba(0,255,255,0.7), 0 0 5px rgba(255,0,255,0.5); /* Enhanced glow */
+}
+
+.modal .max-button {
+    background-color: #ff00ff; /* Neon pink */
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8em;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-shadow: 0 0 5px #000;
+    box-shadow: 0 0 8px rgba(255,0,255,0.7);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.modal .max-button:hover {
+    background-color: #ff33ff; /* Lighter pink */
+    transform: scale(1.05);
+}
+
+.modal .input-group select {
+    min-width: 80px; /* Ensure select has some base width */
+    flex-grow: 0; /* Don't let select grow too much */
+}
+
+.modal .balance-info {
+    font-size: 0.85em;
+    color: #ccc;
+    margin-top: 10px;
+    text-align: right;
+    text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+}
+
+.modal .balance-info span {
+    color: #00ff00; /* Neon green for balance amounts */
+    font-weight: bold;
+    text-shadow: 0 0 5px #00ff00;
+}
+
+.modal .usd-preview {
+    font-size: 0.9em;
+    color: #00ffff; /* Cyan for USD value */
+    margin-top: 8px;
+    text-align: right;
+    font-weight: bold;
+    text-shadow: 0 0 4px #00ffff;
+}
+.modal .usd-preview span {
+    font-family: 'Permanent Marker', cursive; /* Different font for USD values */
+    font-size: 1.1em;
+}
+
+.modal .lock-timer-info {
+    text-align: center;
+    font-size: 0.9em;
+    color: #ffcc00; /* Gold-ish color for timer */
+    margin: 20px 0;
+    padding: 10px;
+    background-color: rgba(30, 20, 0, 0.5); /* Dark goldish background */
+    border: 1px dashed #ffcc00;
+    border-radius: 5px;
+    text-shadow: 0 0 3px rgba(0,0,0,0.7);
+}
+.modal .lock-timer-info span {
+    font-weight: bold;
+}
+
+.modal .conversion-estimate {
+    text-align: center;
+    font-size: 0.9em;
+    color: #00ff00; /* Green for estimate */
+    margin: 15px 0;
+    padding: 10px;
+    background-color: rgba(0, 30, 0, 0.5); /* Dark greenish background */
+    border: 1px dashed #00ff00;
+    border-radius: 5px;
+}
+.modal .conversion-estimate p {
+    margin: 5px 0;
+}
+.modal .conversion-estimate span {
+    font-weight: bold;
+}
+
+
+.modal-action-button {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1.2em;
+    margin-top: 25px; /* More space before action button */
+    /* CTA button styles are already defined, these will use them */
+}
+
+/* Ensure modal content scrolls if it gets too tall, especially on small screens */
+.modal-content {
+    max-height: 85vh; /* Max height relative to viewport */
+    overflow-y: auto; /* Add scroll if content overflows */
+    overflow-x: hidden;
+}
+
+/* Custom scrollbar for modal content (WebKit browsers) */
+.modal-content::-webkit-scrollbar {
+    width: 10px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: rgba(30, 0, 30, 0.8); /* Dark purple track */
+    border-radius: 10px;
+    border: 1px solid #ff00ff;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #00ffff; /* Cyan thumb */
+    border-radius: 10px;
+    box-shadow: 0 0 5px #00ffff, 0 0 10px #ff00ff;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #33ffff; /* Lighter cyan on hover */
+}
+
+/* Responsive adjustments for modals */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 95%;
+        margin: 10% auto;
+        padding: 20px;
+    }
+
+    .modal-content h2 {
+        font-size: 1.5em;
+    }
+
+    .modal-tab-button {
+        font-size: 0.8em;
+        padding: 8px 15px;
+    }
+
+    .modal .form-group label {
+        font-size: 0.9em;
+    }
+
+    .modal .input-group input[type="number"],
+    .modal .input-group select {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+
+    .modal .max-button {
+        font-size: 0.7em;
+        padding: 8px 10px;
+    }
+
+    .modal-action-button {
+        font-size: 1em;
+        padding: 12px 15px;
+    }
+
+    .modal .balance-info,
+    .modal .usd-preview,
+    .modal .lock-timer-info,
+    .modal .conversion-estimate {
+        font-size: 0.8em;
+    }
+}
+
+@media (max-width: 400px) {
+    .modal-tab-buttons {
+        flex-direction: column; /* Stack tab buttons */
+        align-items: stretch;
+    }
+    .modal-tab-button {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+    .modal .input-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .modal .input-group input[type="number"],
+    .modal .input-group select {
+        width: 100%;
+    }
+    .modal .max-button {
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+/* --- New Bribes Interface Styles --- */
+
+.new-bribes-interface {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 20px;
+    border: 2px solid #0f0; /* Neon green border */
+    box-shadow: 0 0 15px #0f0, 0 0 25px #0f0 inset; /* Glowing effect */
+    background-color: rgba(10, 0, 20, 0.85); /* Dark vaporwave purple */
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+}
+
+.header-pixelated,
+.subheader-pixelated {
+    font-family: 'Press Start 2P', cursive;
+    color: #ff00ff; /* Hot pink */
+    text-shadow: 0 0 5px #ff00ff, 0 0 10px #fff;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.subheader-pixelated {
+    font-size: 0.9em;
+    color: #00ffff; /* Cyan */
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.bribe-panel {
+    background-color: rgba(30, 10, 50, 0.9); /* Deeper purple */
+    padding: 15px;
+    border: 1px solid #00ffff;
+    box-shadow: 0 0 10px #00ffff inset, 0 0 5px #00ffff;
+    border-radius: 8px; /* Slightly rounded for a softer retro feel */
+    margin-bottom: 20px;
+}
+
+.retro-border {
+    border: 2px dashed #ff00ff; /* Dashed pink border */
+    padding: 10px;
+    box-shadow: 0 0 8px #ff00ff;
+}
+
+.pixel-input,
+.select-retro {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #000;
+    color: #0f0; /* Neon green text */
+    border: 1px solid #0f0;
+    padding: 10px;
+    font-size: 0.8em;
+    width: calc(100% - 22px); /* Full width minus padding and border */
+    margin-bottom: 10px;
+    box-shadow: 0 0 5px #0f0 inset;
+}
+
+.select-retro {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 1em;
+    padding-right: 30px; /* Make space for arrow */
+}
+
+.searchable-dropdown-container {
+    margin-bottom: 15px;
+}
+
+#bribe-target-dropdown {
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #00ffff;
+    background-color: #000;
+}
+
+.dropdown-item-retro {
+    display: flex;
+    align-items: center;
+    padding: 8px 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #333;
+    transition: background-color 0.2s ease;
+}
+
+.dropdown-item-retro:hover {
+    background-color: #2a003d; /* Darker purple on hover */
+}
+
+.dropdown-item-retro:last-child {
+    border-bottom: none;
+}
+
+.token-logo-small-retro {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    border: 1px solid #0f0;
+}
+
+.token-name-retro {
+    font-size: 0.8em;
+    color: #0f0;
+    flex-grow: 1;
+}
+
+.token-stats-retro {
+    font-size: 0.7em;
+    color: #aaa;
+}
+
+.selected-info-panel-retro {
+    padding: 10px;
+    background-color: rgba(0,0,0,0.5);
+    border: 1px solid #ff00ff;
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+.selected-info-panel-retro strong {
+    color: #00ffff;
+}
+
+.input-group-retro {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.label-pixelated {
+    font-size: 0.8em;
+    color: #00ffff;
+    margin-bottom: 5px;
+}
+
+.balance-pixelated,
+.estimated-value-pixelated {
+    font-size: 0.75em;
+    color: #ccc;
+    margin-top: 5px;
+}
+
+.balance-pixelated span,
+.estimated-value-pixelated span {
+    color: #0f0;
+    font-weight: bold;
+}
+
+.quick-action-buttons-retro {
+    display: flex;
+    gap: 10px;
+    margin-top: 5px;
+}
+
+.pixel-button {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #333;
+    color: #ff00ff;
+    border: 1px solid #ff00ff;
+    padding: 8px 12px;
+    cursor: pointer;
+    box-shadow: 0 0 5px #ff00ff;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 0.7em;
+}
+
+.pixel-button:hover {
+    background-color: #ff00ff;
+    color: #000;
+}
+
+.pixel-button.small-button {
+    padding: 6px 10px;
+    font-size: 0.6em;
+}
+
+.cta-button-retro.large-bribe-submit-retro {
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(45deg, #ff00ff, #00ffff, #0f0, #ff00ff);
+    background-size: 400% 400%;
+    animation: vaporwaveGradient 10s ease infinite;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 15px 25px;
+    font-size: 1.2em;
+    cursor: pointer;
+    text-transform: uppercase;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #0f0;
+    transition: transform 0.1s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.cta-button-retro.large-bribe-submit-retro:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px #ff00ff, 0 0 30px #00ffff, 0 0 45px #0f0, 0 0 5px #fff inset;
+    animation-play-state: paused; /* Pause gradient animation to emphasize hover */
+    background-color: #2a003d; /* Fallback solid color if gradient is too much */
+}
+
+.cta-button-retro.large-bribe-submit-retro:active {
+    transform: scale(0.98);
+    box-shadow: 0 0 5px #ff00ff, 0 0 10px #00ffff, 0 0 15px #0f0;
+}
+
+@keyframes vaporwaveGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .new-bribes-interface {
+        padding: 15px;
+    }
+
+    .header-pixelated {
+        font-size: 1.5em;
+    }
+
+    .subheader-pixelated {
+        font-size: 0.8em;
+    }
+
+    .pixel-input,
+    .select-retro {
+        font-size: 0.7em;
+        padding: 8px;
+    }
+
+    .cta-button-retro.large-bribe-submit-retro {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+
+    .quick-action-buttons-retro {
+        flex-direction: column; /* Stack buttons on smaller screens */
+    }
+
+    .pixel-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+/* vote.css - Styles for the new Rewards Tab Design */
+
+/* General Rewards Tab Styling */
+#rewards-tab.active {
+    display: flex;
+    flex-direction: column;
+    gap: 30px; /* Increased gap for better separation */
+    padding: 25px;
+    background-color: rgba(10, 0, 20, 0.85); /* Darker, slightly transparent background */
+    border: 2px solid #ff00ff; /* Neon pink border */
+    box-shadow: 0 0 15px #ff00ff, 0 0 30px #ff00ff inset; /* Outer and inner glow */
+    border-radius: 10px; /* Slightly rounded corners */
+}
+
+.rewards-header,
+.rewards-subheader {
+    font-family: 'Press Start 2P', cursive;
+    color: #00ff00; /* Bright green for headers */
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00; /* Green glow */
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.rewards-header {
+    font-size: 28px; /* Larger for the main section header */
+}
+
+.rewards-subheader {
+    font-size: 22px; /* Slightly smaller for sub-section headers */
+    color: #ffff00; /* Bright yellow for subheaders */
+    text-shadow: 0 0 5px #ffff00, 0 0 10px #ffff00; /* Yellow glow */
+}
+
+/* Rewards Overview Section (Total Earned) */
+.rewards-overview-section {
+    padding: 20px;
+    border-bottom: 2px dashed #00ffff; /* Cyan dashed border for separation */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.total-earned-amount {
+    font-family: 'Permanent Marker', cursive; /* Different font for emphasis */
+    font-size: 36px;
+    color: #ffffff;
+    text-shadow: 0 0 8px #ffffff, 0 0 15px #ff00ff; /* White text with pink glow */
+    margin-bottom: 20px;
+}
+
+#total-earned-value {
+    font-weight: bold;
+}
+
+/* Unclaimed Bribes & LP Rewards Sections */
+.unclaimed-bribes-section,
+.lp-rewards-section {
+    padding: 20px;
+    background-color: rgba(20, 0, 40, 0.7); /* Slightly different background for subsections */
+    border: 1px solid #7f00ff; /* Purple border */
+    border-radius: 8px;
+    box-shadow: 0 0 10px #7f00ff; /* Purple glow */
+}
+
+.rewards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Spacing between reward items */
+    margin-bottom: 20px;
+    max-height: 300px; /* Limit height and allow scroll if many items */
+    overflow-y: auto;
+    padding-right: 10px; /* For scrollbar */
+}
+
+/* Custom scrollbar for rewards list */
+.rewards-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.rewards-list::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.5);
+    border-radius: 4px;
+}
+
+.rewards-list::-webkit-scrollbar-thumb {
+    background-color: #ff00ff; /* Neon pink scrollbar */
+    border-radius: 4px;
+    border: 1px solid #00ffff; /* Cyan border for thumb */
+}
+
+.reward-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.6); /* Dark background for items */
+    border: 1px solid #00ffff; /* Cyan border */
+    border-radius: 6px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.reward-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px #00ffff, 0 0 5px #ffffff inset;
+}
+
+.reward-icon {
+    font-size: 28px; /* Larger icons */
+    filter: drop-shadow(0 0 5px #ffff00); /* Yellow glow for icons */
+}
+
+.reward-details {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 14px;
+    color: #ffffff; /* White text for details */
+    text-shadow: 0 0 3px #00ff00; /* Subtle green glow for text */
+}
+
+/* Claim Buttons Styling */
+.claim-all-rewards-button,
+.individual-claim-button {
+    font-family: 'Press Start 2P', cursive;
+    padding: 12px 25px;
+    font-size: 16px;
+    color: #ffffff;
+    border: 2px solid #ff00ff; /* Neon pink border */
+    background: linear-gradient(45deg, #3a003a, #7f00ff); /* Purple gradient */
+    box-shadow: 0 0 8px #ff00ff, 0 0 15px #ff00ff inset, 0 0 5px #ffffff; /* Multiple glows */
+    text-shadow: 0 0 5px #ffffff;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s, transform 0.1s;
+    display: block; /* Make buttons block for easier centering/full width */
+    margin: 10px auto; /* Center buttons */
+    min-width: 200px; /* Minimum width for consistency */
+    text-align: center;
+}
+
+.claim-all-rewards-button:hover,
+.individual-claim-button:hover {
+    background: linear-gradient(45deg, #5c005c, #a300ff); /* Brighter gradient on hover */
+    box-shadow: 0 0 12px #ff00ff, 0 0 25px #ff00ff inset, 0 0 10px #ffffff;
+    transform: translateY(-2px);
+}
+
+.claim-all-rewards-button:active,
+.individual-claim-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 0 5px #ff00ff, 0 0 10px #ff00ff inset;
+}
+
+/* Dominance for Claim All Rewards button when rewards are available (JS will toggle 'has-rewards') */
+.claim-all-rewards-button.has-rewards {
+    border-color: #00ff00; /* Green border when active */
+    background: linear-gradient(45deg, #003a00, #007f00); /* Green gradient */
+    box-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00 inset, 0 0 8px #ffffff;
+}
+.claim-all-rewards-button.has-rewards:hover {
+    background: linear-gradient(45deg, #005c00, #00a300);
+    box-shadow: 0 0 15px #00ff00, 0 0 30px #00ff00 inset, 0 0 12px #ffffff;
+}
+
+
+/* Less dominant style for Claim All Rewards when no individual rewards or for individual buttons by default */
+.claim-all-rewards-button:not(.has-rewards),
+.individual-claim-button {
+   /* Default style already applied is less dominant */
+}
+
+
+/* Empty States Styling */
+.empty-state {
+    font-family: 'Press Start 2P', cursive;
+    color: #aaaaaa; /* Greyish text for empty state */
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    border: 1px dashed #555555; /* Dashed border for empty state box */
+    border-radius: 5px;
+    background-color: rgba(0,0,0,0.3);
+}
+
+.empty-state-icon {
+    font-size: 32px; /* Larger icon for empty state */
+    opacity: 0.7;
+    /* Basic animation for empty state icons */
+    animation: pulseIcon 2s infinite ease-in-out;
+}
+
+@keyframes pulseIcon {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #rewards-tab {
+        padding: 15px;
+        gap: 20px;
+    }
+
+    .rewards-header {
+        font-size: 24px;
+    }
+
+    .rewards-subheader {
+        font-size: 20px;
+    }
+
+    .total-earned-amount {
+        font-size: 30px;
+    }
+
+    .reward-icon {
+        font-size: 24px;
+    }
+
+    .reward-details {
+        font-size: 12px;
+    }
+
+    .claim-all-rewards-button,
+    .individual-claim-button {
+        font-size: 14px;
+        padding: 10px 20px;
+        min-width: 180px;
+    }
+
+    .rewards-list {
+        max-height: 250px; /* Adjust height for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .rewards-header {
+        font-size: 20px;
+    }
+
+    .rewards-subheader {
+        font-size: 18px;
+    }
+
+    .total-earned-amount {
+        font-size: 26px;
+    }
+
+    .reward-item {
+        flex-direction: column; /* Stack icon and details on very small screens */
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .reward-icon {
+        font-size: 22px;
+    }
+}

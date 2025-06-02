@@ -1,0 +1,130 @@
+/* General body styling for full height, if not already present in main CSS */
+body {
+    margin: 0;
+    /* padding-bottom: 80px; /* Removed as footer is no longer fixed */
+    font-family: 'Press Start 2P', monospace; /* Pixel font */
+    background-color: #0a0a0a; /* Dark background for neon effect */
+    color: #00ff00; /* Neon green text */
+    display: flex; /* Added to help push footer down if content is short */
+    flex-direction: column; /* Added to help push footer down */
+    min-height: 100vh; /* Ensures body takes at least full viewport height */
+    align-items: center; /* Attempt to center flex items (page content) horizontally */
+}
+
+/* Ensure main content areas can grow to push footer down */
+.container, .content {
+    flex-grow: 1;
+    margin-bottom: 50px;
+}
+
+.site-footer {
+    background-color: #1a1a1a; /* Dark, retro background */
+    border-top: 2px solid #00ff00; /* Neon green top border */
+    box-shadow: 0 -2px 15px rgba(0, 255, 0, 0.5); /* Neon glow effect */
+    color: #00ff00;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    /* padding-bottom: 0; Removed */
+    /* position: fixed; Removed */
+    /* bottom: 0; Removed */
+    /* left: 0; Removed */
+   width: 100%; /* Retained to ensure full width */
+    /* z-index: 1000; Removed */
+    text-align: center;
+    font-family: 'Press Start 2P', monospace; /* Pixel font */
+    font-size: 12px; /* Compact font size */
+    display: flex;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    min-height: 60px; /* Compact height, reverted */
+    margin-top: auto; /* Pushes footer to the bottom of the flex container (body), reverted */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px; /* Space between links and info */
+    width: 100%;
+    max-width: 960px; /* Max width for larger screens */
+}
+
+.footer-links {
+    display: flex;
+    gap: 15px; /* Space between icons */
+    margin-bottom: 5px;
+}
+
+.footer-icon-link {
+    color: #00ff00; /* Neon green */
+    text-decoration: none;
+    font-size: 16px; /* Icon text size */
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    padding: 5px;
+}
+
+.footer-icon-link:hover,
+.footer-icon-link:focus {
+    color: #ffffff; /* White on hover */
+    text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00; /* Neon glow on hover */
+}
+
+.footer-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+
+.copyright,
+.slogan {
+    margin: 0;
+    font-size: 10px; /* Smaller text for copyright and slogan */
+    color: #00cc00; /* Slightly dimmer neon green */
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.7);
+}
+
+.slogan {
+    font-style: italic;
+    color: #00aa00; /* Even dimmer for the slogan */
+}
+
+/* Responsive adjustments */
+@media (min-width: 600px) {
+    .site-footer {
+        padding: 15px 30px;
+        font-size: 14px;
+        min-height: 70px; /* Reverted */
+    }
+
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .footer-links {
+        margin-bottom: 0;
+        gap: 20px;
+    }
+
+    .footer-icon-link {
+        font-size: 18px; /* Larger icons on wider screens */
+    }
+    
+    .footer-info {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .copyright,
+    .slogan {
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 992px) {
+    .footer-icon-link {
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,341 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Permanent+Marker&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Allow body to grow for scrollable content */
+    width: 100vw;
+    font-family: 'Press Start 2P', cursive;
+    background-color: #000;
+    color: #fff;
+    display: flex; /* Use flexbox for body to center content */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: flex-start; /* Align scrollable content to the top */
+    align-items: center; /* Center content horizontally */
+    /* Removed position and perspective to prevent fixed navbar issues */
+    overflow-x: hidden; /* Prevent horizontal scrollbar from appearing */
+    overflow-y: auto;   /* Allow body to scroll vertically if content overflows */
+}
+
+.background-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 0, 255, 0.3),
+        rgba(255, 0, 255, 0.3) 10px,
+        rgba(0, 255, 255, 0.3) 10px,
+        rgba(0, 255, 255, 0.3) 20px
+    ), url('https://shawm69.github.io/Engayged/public/assets/Vaporwave-Grid.gif') no-repeat center center fixed; /* Vaporwave grid + glitch GIF */
+    background-size: 100% 100%;
+    background-position: 0 0;
+    opacity: 0.7;
+    filter: brightness(1.5) saturate(2);
+    animation: backgroundShift 20s linear infinite, scanlines 0.5s steps(1) infinite;
+    transform: translateZ(-100px) scale(3);
+    z-index: -2;
+}
+
+@keyframes backgroundShift {
+    0% { background-position: 0% 0%; }
+    100% { background-position: 100% 100%; }
+}
+
+@keyframes scanlines {
+    0% {
+        box-shadow: inset 0 0 0 rgba(0,0,0,0.5);
+    }
+    50% {
+        box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+    }
+    100% {
+        box-shadow: inset 0 0 0 rgba(0,0,0,0.5);
+    }
+}
+
+.content {
+    z-index: 10;
+    text-align: center;
+    max-width: 90%;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 0, 0.8)) drop-shadow(0 0 30px rgba(0, 255, 255, 0.6));
+    /* Removed position: relative, top: 0, and padding-top: 0 as they interfered with top offset */
+    display: flex;
+    flex-direction: column;
+    gap: 75px; /* Added gap for spacing between children */
+    align-items: center; /* Center flex items (children) horizontally */
+}
+
+.main-header {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 5vw; /* Responsive font size */
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff0000;
+    animation: pulse 1s infinite alternate, flicker 0.1s infinite alternate, shake 0.5s infinite alternate;
+    /* margin-bottom: 50px; */ /* Handled by flex gap */
+    position: relative;
+    display: inline-block; /* Required for transform effects */
+}
+
+.rainbow-text {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbowShift 5s linear infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(1.05); opacity: 0.9; }
+}
+
+@keyframes flicker {
+    0%, 100% { opacity: 1; text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff, 0 0 30px #ff0000; }
+    50% { opacity: 0.8; text-shadow: none; }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0) translateY(0) rotate(0deg); }
+    25% { transform: translateX(5px) translateY(-5px) rotate(1deg); }
+    50% { transform: translateX(-5px) translateY(5px) rotate(-1deg); }
+    75% { transform: translateX(5px) translateY(5px) rotate(1deg); }
+}
+
+@keyframes rainbowShift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.gif-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: visible;
+    transform-style: preserve-3d;
+    z-index: -1;
+}
+
+.dank-gif {
+    position: absolute;
+    width: clamp(40px, 7.5vw, 125px);
+    height: auto;
+    max-width: none;
+    max-height: none;
+    animation: randomSlide 20s infinite alternate ease-in-out; /* Removed smallRotation */
+    filter: drop-shadow(0 0 5px yellow) drop-shadow(0 0 10px lime);
+    opacity: 0.8;
+    z-index: 1;
+    /* Ensure images stay very close to their starting positions */
+    transform-origin: center;
+}
+
+.dank-gif-spin {
+    animation: smallRotation 15s infinite linear;
+}
+
+/* New animations with reduced movement to keep images near starting positions */
+@keyframes smallFloat {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-10px) translateX(5px); }
+    100% { transform: translateY(0) translateX(0); }
+}
+
+@keyframes smallRotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes randomSlide {
+    0% {
+        transform: translate(var(--rand-x-0), var(--rand-y-0)) scale(1) rotate(0deg);
+    }
+    25% {
+        transform: translate(var(--rand-x-1), var(--rand-y-1)) scale(1.05) rotate(5deg);
+    }
+    50% {
+        transform: translate(var(--rand-x-2), var(--rand-y-2)) scale(1) rotate(-5deg);
+    }
+    75% {
+        transform: translate(var(--rand-x-3), var(--rand-y-3)) scale(0.95) rotate(2deg);
+    }
+    100% {
+        transform: translate(var(--rand-x-4), var(--rand-y-4)) scale(1) rotate(0deg);
+    }
+}
+
+/* Specific GIF positioning and delays for multiple instances */
+/* Specific GIF positioning and delays for multiple instances - These will now be handled by JavaScript for random positioning */
+
+.snoop-left {
+    left: 0; /* Place directly at the edge */
+    transform: scaleX(1);
+    animation: snoopFloat 15s infinite alternate;
+}
+
+.snoop-right {
+    right: 0; /* Place directly at the edge */
+    transform: scaleX(-1);
+    animation: snoopFloat 15s infinite alternate reverse;
+    animation-delay: 7.5s;
+}
+
+/* Subheading styling */
+.subheading {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2vw;
+    color: lime;
+    text-shadow: 0 0 5px #00ff00, 0 0 10px #00cc00;
+    /* margin-top: 20px; */ /* Handled by flex gap */
+    animation: neonFlicker 0.1s infinite alternate;
+}
+
+@keyframes neonFlicker {
+    0%, 100% { opacity: 1; text-shadow: 0 0 5px #00ff00, 0 0 10px #00cc00; }
+    50% { opacity: 0.8; text-shadow: none; }
+}
+
+/* Snoop Dogg positioning - make sure these override any earlier declarations */
+.snoop-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.snoop {
+    position: absolute;
+    width: clamp(100px, 20vw, 300px);
+    height: auto;
+    bottom: -50px;
+    animation: snoopFloat 15s infinite alternate;
+    filter: drop-shadow(0 0 10px #00ff00) drop-shadow(0 0 20px #00cc00);
+    opacity: 0.9;
+}
+
+/* Make sure these are the ONLY declarations for snoop-left/right to avoid conflicts */
+.snoop.snoop-left {
+    left: 25%; /* Move towards center from left */
+    transform: scaleX(1);
+}
+
+.snoop.snoop-right {
+    right: 25%; /* Move towards center from right */
+    transform: scaleX(-1);
+    animation-delay: 7.5s;
+}
+
+@keyframes snoopFloat {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-50px); }
+    100% { transform: translateY(0); }
+}
+
+@keyframes spinFaster {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.hitmarker {
+    position: absolute;
+    width: 100px; /* Adjust size as needed */
+    height: auto;
+    opacity: 0;
+    animation: hitmarkerFade 1s forwards;
+    pointer-events: none;
+    z-index: 9999; /* Ensure it's on top */
+}
+
+@keyframes hitmarkerFade {
+    0% { opacity: 1; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+    100% { opacity: 0; transform: scale(1); }
+}
+
+@keyframes floatAndSpin {
+    0% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+    100% { transform: translateY(0) rotate(360deg); }
+}
+
+@keyframes chaoticMovement {
+    0% { transform: translate(0vw, 0vh); }
+    25% { transform: translate(1vw, 0.5vh); }
+    50% { transform: translate(-1vw, 1vh); }
+    75% { transform: translate(0.5vw, -1vh); }
+    100% { transform: translate(0vw, 0vh); }
+}
+
+.cta-button {
+    background-color: red;
+    border: 5px outset #ffcc00; /* Retro button style */
+    color: yellow;
+    padding: 20px 40px;
+    font-size: 2.5vw; /* Responsive font size */
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), inset 0 0 10px rgba(255, 255, 0, 0.9);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.1s ease-in-out;
+    animation: popupAd 1s infinite alternate; /* Vintage popup effect */
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    /* margin-top: 100px; */ /* Handled by flex gap */
+    transform: rotate(-3deg);
+    align-self: center; /* Center the button within its flex container */
+    width: fit-content; /* Make button only as wide as its content */
+    text-align: center; /* Center text within the button */
+}
+
+@keyframes popupAd {
+    0% { transform: rotate(-3deg) scale(1); border-color: #ffcc00; }
+    100% { transform: rotate(3deg) scale(1.02); border-color: #ffff00; }
+}
+
+.cta-button:hover {
+    background-color: #cc0000;
+    box-shadow: 0 0 30px rgba(255, 0, 0, 1), inset 0 0 15px rgba(255, 255, 0, 1);
+    transform: scale(1.05) rotate(0deg); /* Counteract initial rotation */
+    filter: brightness(1.2);
+}
+
+.sparkle {
+    position: absolute;
+    background-color: white;
+    border-radius: 50%;
+    opacity: 0;
+    animation: sparkleFade 0.5s forwards;
+    pointer-events: none;
+    width: 5px;
+    height: 5px;
+}
+
+@keyframes sparkleFade {
+    0% { opacity: 1; transform: scale(0); }
+    100% { opacity: 0; transform: scale(1); }
+}
+/* Styles for the connect page background */
+body.connect-page-background {
+    background-image: url('./public/assets/doritos.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-color: #000; /* Fallback color */
+}
+
+/* Hide the default animated background overlay on the connect page */
+body.connect-page-background .background-overlay {
+    display: none;
+}
